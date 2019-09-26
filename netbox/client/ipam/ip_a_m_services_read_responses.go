@@ -27,7 +27,7 @@ import (
 
 	strfmt "github.com/go-openapi/strfmt"
 
-	models "github.com/Preskton/go-netbox/netbox/models"
+	models "github.com/brokoli18/go-netbox/netbox/models"
 )
 
 // IPAMServicesReadReader is a Reader for the IPAMServicesRead structure.
