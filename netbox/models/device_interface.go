@@ -37,8 +37,12 @@ type DeviceInterface struct {
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -101,6 +105,9 @@ type DeviceInterface struct {
 	// tags
 	Tags []string `json:"tags"`
 
+	// type
+	Type *DeviceInterfaceType `json:"type,omitempty"`
+
 	// untagged vlan
 	UntaggedVlan *NestedVLAN `json:"untagged_vlan,omitempty"`
 }
@@ -150,6 +157,10 @@ func (m *DeviceInterface) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -359,6 +370,24 @@ func (m *DeviceInterface) validateTags(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+func (m *DeviceInterface) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	if m.Type != nil {
+		if err := m.Type.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("type")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -594,6 +623,73 @@ func (m *DeviceInterfaceMode) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DeviceInterfaceMode) UnmarshalBinary(b []byte) error {
 	var res DeviceInterfaceMode
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// DeviceInterfaceType Type
+// swagger:model DeviceInterfaceType
+type DeviceInterfaceType struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this device interface type
+func (m *DeviceInterfaceType) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *DeviceInterfaceType) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("type"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *DeviceInterfaceType) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("type"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *DeviceInterfaceType) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *DeviceInterfaceType) UnmarshalBinary(b []byte) error {
+	var res DeviceInterfaceType
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

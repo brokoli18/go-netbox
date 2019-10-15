@@ -78,8 +78,16 @@ type DcimCablesListParams struct {
 
 	/*Color*/
 	Color *string
+	/*Device*/
+	Device *string
+	/*DeviceID*/
+	DeviceID *string
+	/*ID*/
+	ID *string
+	/*Label*/
+	Label *string
 	/*Length*/
-	Length *float64
+	Length *string
 	/*LengthUnit*/
 	LengthUnit *string
 	/*Limit
@@ -94,6 +102,14 @@ type DcimCablesListParams struct {
 	Offset *int64
 	/*Q*/
 	Q *string
+	/*Rack*/
+	Rack *string
+	/*RackID*/
+	RackID *string
+	/*Site*/
+	Site *string
+	/*SiteID*/
+	SiteID *string
 	/*Status*/
 	Status *string
 	/*Type*/
@@ -148,14 +164,58 @@ func (o *DcimCablesListParams) SetColor(color *string) {
 	o.Color = color
 }
 
+// WithDevice adds the device to the dcim cables list params
+func (o *DcimCablesListParams) WithDevice(device *string) *DcimCablesListParams {
+	o.SetDevice(device)
+	return o
+}
+
+// SetDevice adds the device to the dcim cables list params
+func (o *DcimCablesListParams) SetDevice(device *string) {
+	o.Device = device
+}
+
+// WithDeviceID adds the deviceID to the dcim cables list params
+func (o *DcimCablesListParams) WithDeviceID(deviceID *string) *DcimCablesListParams {
+	o.SetDeviceID(deviceID)
+	return o
+}
+
+// SetDeviceID adds the deviceId to the dcim cables list params
+func (o *DcimCablesListParams) SetDeviceID(deviceID *string) {
+	o.DeviceID = deviceID
+}
+
+// WithID adds the id to the dcim cables list params
+func (o *DcimCablesListParams) WithID(id *string) *DcimCablesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim cables list params
+func (o *DcimCablesListParams) SetID(id *string) {
+	o.ID = id
+}
+
+// WithLabel adds the label to the dcim cables list params
+func (o *DcimCablesListParams) WithLabel(label *string) *DcimCablesListParams {
+	o.SetLabel(label)
+	return o
+}
+
+// SetLabel adds the label to the dcim cables list params
+func (o *DcimCablesListParams) SetLabel(label *string) {
+	o.Label = label
+}
+
 // WithLength adds the length to the dcim cables list params
-func (o *DcimCablesListParams) WithLength(length *float64) *DcimCablesListParams {
+func (o *DcimCablesListParams) WithLength(length *string) *DcimCablesListParams {
 	o.SetLength(length)
 	return o
 }
 
 // SetLength adds the length to the dcim cables list params
-func (o *DcimCablesListParams) SetLength(length *float64) {
+func (o *DcimCablesListParams) SetLength(length *string) {
 	o.Length = length
 }
 
@@ -201,6 +261,50 @@ func (o *DcimCablesListParams) WithQ(q *string) *DcimCablesListParams {
 // SetQ adds the q to the dcim cables list params
 func (o *DcimCablesListParams) SetQ(q *string) {
 	o.Q = q
+}
+
+// WithRack adds the rack to the dcim cables list params
+func (o *DcimCablesListParams) WithRack(rack *string) *DcimCablesListParams {
+	o.SetRack(rack)
+	return o
+}
+
+// SetRack adds the rack to the dcim cables list params
+func (o *DcimCablesListParams) SetRack(rack *string) {
+	o.Rack = rack
+}
+
+// WithRackID adds the rackID to the dcim cables list params
+func (o *DcimCablesListParams) WithRackID(rackID *string) *DcimCablesListParams {
+	o.SetRackID(rackID)
+	return o
+}
+
+// SetRackID adds the rackId to the dcim cables list params
+func (o *DcimCablesListParams) SetRackID(rackID *string) {
+	o.RackID = rackID
+}
+
+// WithSite adds the site to the dcim cables list params
+func (o *DcimCablesListParams) WithSite(site *string) *DcimCablesListParams {
+	o.SetSite(site)
+	return o
+}
+
+// SetSite adds the site to the dcim cables list params
+func (o *DcimCablesListParams) SetSite(site *string) {
+	o.Site = site
+}
+
+// WithSiteID adds the siteID to the dcim cables list params
+func (o *DcimCablesListParams) WithSiteID(siteID *string) *DcimCablesListParams {
+	o.SetSiteID(siteID)
+	return o
+}
+
+// SetSiteID adds the siteId to the dcim cables list params
+func (o *DcimCablesListParams) SetSiteID(siteID *string) {
+	o.SiteID = siteID
 }
 
 // WithStatus adds the status to the dcim cables list params
@@ -249,14 +353,78 @@ func (o *DcimCablesListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 
 	}
 
+	if o.Device != nil {
+
+		// query param device
+		var qrDevice string
+		if o.Device != nil {
+			qrDevice = *o.Device
+		}
+		qDevice := qrDevice
+		if qDevice != "" {
+			if err := r.SetQueryParam("device", qDevice); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.DeviceID != nil {
+
+		// query param device_id
+		var qrDeviceID string
+		if o.DeviceID != nil {
+			qrDeviceID = *o.DeviceID
+		}
+		qDeviceID := qrDeviceID
+		if qDeviceID != "" {
+			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Label != nil {
+
+		// query param label
+		var qrLabel string
+		if o.Label != nil {
+			qrLabel = *o.Label
+		}
+		qLabel := qrLabel
+		if qLabel != "" {
+			if err := r.SetQueryParam("label", qLabel); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Length != nil {
 
 		// query param length
-		var qrLength float64
+		var qrLength string
 		if o.Length != nil {
 			qrLength = *o.Length
 		}
-		qLength := swag.FormatFloat64(qrLength)
+		qLength := qrLength
 		if qLength != "" {
 			if err := r.SetQueryParam("length", qLength); err != nil {
 				return err
@@ -323,6 +491,70 @@ func (o *DcimCablesListParams) WriteToRequest(r runtime.ClientRequest, reg strfm
 		qQ := qrQ
 		if qQ != "" {
 			if err := r.SetQueryParam("q", qQ); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Rack != nil {
+
+		// query param rack
+		var qrRack string
+		if o.Rack != nil {
+			qrRack = *o.Rack
+		}
+		qRack := qrRack
+		if qRack != "" {
+			if err := r.SetQueryParam("rack", qRack); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.RackID != nil {
+
+		// query param rack_id
+		var qrRackID string
+		if o.RackID != nil {
+			qrRackID = *o.RackID
+		}
+		qRackID := qrRackID
+		if qRackID != "" {
+			if err := r.SetQueryParam("rack_id", qRackID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Site != nil {
+
+		// query param site
+		var qrSite string
+		if o.Site != nil {
+			qrSite = *o.Site
+		}
+		qSite := qrSite
+		if qSite != "" {
+			if err := r.SetQueryParam("site", qSite); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.SiteID != nil {
+
+		// query param site_id
+		var qrSiteID string
+		if o.SiteID != nil {
+			qrSiteID = *o.SiteID
+		}
+		qSiteID := qrSiteID
+		if qSiteID != "" {
+			if err := r.SetQueryParam("site_id", qSiteID); err != nil {
 				return err
 			}
 		}

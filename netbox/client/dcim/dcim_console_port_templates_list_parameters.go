@@ -78,6 +78,8 @@ type DcimConsolePortTemplatesListParams struct {
 
 	/*DevicetypeID*/
 	DevicetypeID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -142,6 +144,17 @@ func (o *DcimConsolePortTemplatesListParams) SetDevicetypeID(devicetypeID *strin
 	o.DevicetypeID = devicetypeID
 }
 
+// WithID adds the id to the dcim console port templates list params
+func (o *DcimConsolePortTemplatesListParams) WithID(id *string) *DcimConsolePortTemplatesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim console port templates list params
+func (o *DcimConsolePortTemplatesListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithLimit adds the limit to the dcim console port templates list params
 func (o *DcimConsolePortTemplatesListParams) WithLimit(limit *int64) *DcimConsolePortTemplatesListParams {
 	o.SetLimit(limit)
@@ -204,6 +217,22 @@ func (o *DcimConsolePortTemplatesListParams) WriteToRequest(r runtime.ClientRequ
 		qDevicetypeID := qrDevicetypeID
 		if qDevicetypeID != "" {
 			if err := r.SetQueryParam("devicetype_id", qDevicetypeID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

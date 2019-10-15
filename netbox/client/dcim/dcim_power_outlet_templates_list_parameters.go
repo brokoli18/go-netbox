@@ -78,6 +78,10 @@ type DcimPowerOutletTemplatesListParams struct {
 
 	/*DevicetypeID*/
 	DevicetypeID *string
+	/*FeedLeg*/
+	FeedLeg *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -142,6 +146,28 @@ func (o *DcimPowerOutletTemplatesListParams) SetDevicetypeID(devicetypeID *strin
 	o.DevicetypeID = devicetypeID
 }
 
+// WithFeedLeg adds the feedLeg to the dcim power outlet templates list params
+func (o *DcimPowerOutletTemplatesListParams) WithFeedLeg(feedLeg *string) *DcimPowerOutletTemplatesListParams {
+	o.SetFeedLeg(feedLeg)
+	return o
+}
+
+// SetFeedLeg adds the feedLeg to the dcim power outlet templates list params
+func (o *DcimPowerOutletTemplatesListParams) SetFeedLeg(feedLeg *string) {
+	o.FeedLeg = feedLeg
+}
+
+// WithID adds the id to the dcim power outlet templates list params
+func (o *DcimPowerOutletTemplatesListParams) WithID(id *string) *DcimPowerOutletTemplatesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim power outlet templates list params
+func (o *DcimPowerOutletTemplatesListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithLimit adds the limit to the dcim power outlet templates list params
 func (o *DcimPowerOutletTemplatesListParams) WithLimit(limit *int64) *DcimPowerOutletTemplatesListParams {
 	o.SetLimit(limit)
@@ -204,6 +230,38 @@ func (o *DcimPowerOutletTemplatesListParams) WriteToRequest(r runtime.ClientRequ
 		qDevicetypeID := qrDevicetypeID
 		if qDevicetypeID != "" {
 			if err := r.SetQueryParam("devicetype_id", qDevicetypeID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.FeedLeg != nil {
+
+		// query param feed_leg
+		var qrFeedLeg string
+		if o.FeedLeg != nil {
+			qrFeedLeg = *o.FeedLeg
+		}
+		qFeedLeg := qrFeedLeg
+		if qFeedLeg != "" {
+			if err := r.SetQueryParam("feed_leg", qFeedLeg); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

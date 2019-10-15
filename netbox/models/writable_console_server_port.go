@@ -38,8 +38,12 @@ type WritableConsoleServerPort struct {
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -48,6 +52,10 @@ type WritableConsoleServerPort struct {
 	// Connection status
 	// Enum: [false true]
 	ConnectionStatus bool `json:"connection_status,omitempty"`
+
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
 
 	// Device
 	// Required: true
@@ -76,6 +84,10 @@ func (m *WritableConsoleServerPort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateConnectionStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -143,6 +155,19 @@ func (m *WritableConsoleServerPort) validateConnectionStatus(formats strfmt.Regi
 
 	// value enum
 	if err := m.validateConnectionStatusEnum("connection_status", "body", m.ConnectionStatus); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableConsoleServerPort) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
 		return err
 	}
 

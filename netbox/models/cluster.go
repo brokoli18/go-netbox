@@ -44,6 +44,10 @@ type Cluster struct {
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
+
 	// group
 	Group *NestedClusterGroup `json:"group,omitempty"`
 
@@ -71,6 +75,10 @@ type Cluster struct {
 	// type
 	// Required: true
 	Type *NestedClusterType `json:"type"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 }
 
 // Validate validates this cluster

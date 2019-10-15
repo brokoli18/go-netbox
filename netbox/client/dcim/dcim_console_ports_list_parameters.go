@@ -80,10 +80,14 @@ type DcimConsolePortsListParams struct {
 	Cabled *string
 	/*ConnectionStatus*/
 	ConnectionStatus *string
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -161,6 +165,17 @@ func (o *DcimConsolePortsListParams) SetConnectionStatus(connectionStatus *strin
 	o.ConnectionStatus = connectionStatus
 }
 
+// WithDescription adds the description to the dcim console ports list params
+func (o *DcimConsolePortsListParams) WithDescription(description *string) *DcimConsolePortsListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim console ports list params
+func (o *DcimConsolePortsListParams) SetDescription(description *string) {
+	o.Description = description
+}
+
 // WithDevice adds the device to the dcim console ports list params
 func (o *DcimConsolePortsListParams) WithDevice(device *string) *DcimConsolePortsListParams {
 	o.SetDevice(device)
@@ -181,6 +196,17 @@ func (o *DcimConsolePortsListParams) WithDeviceID(deviceID *string) *DcimConsole
 // SetDeviceID adds the deviceId to the dcim console ports list params
 func (o *DcimConsolePortsListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
+}
+
+// WithID adds the id to the dcim console ports list params
+func (o *DcimConsolePortsListParams) WithID(id *string) *DcimConsolePortsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim console ports list params
+func (o *DcimConsolePortsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim console ports list params
@@ -278,6 +304,22 @@ func (o *DcimConsolePortsListParams) WriteToRequest(r runtime.ClientRequest, reg
 
 	}
 
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Device != nil {
 
 		// query param device
@@ -304,6 +346,22 @@ func (o *DcimConsolePortsListParams) WriteToRequest(r runtime.ClientRequest, reg
 		qDeviceID := qrDeviceID
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

@@ -41,10 +41,6 @@ type WritableVirtualMachineInterface struct {
 	// Enabled
 	Enabled bool `json:"enabled,omitempty"`
 
-	// Form factor
-	// Enum: [0 200 800 1000 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1420 1500 1510 1650 1520 1550 1600 1700 1750 2600 2610 2620 2630 2640 2810 2820 2830 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
-	FormFactor int64 `json:"form_factor,omitempty"`
-
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
@@ -74,6 +70,10 @@ type WritableVirtualMachineInterface struct {
 	// tags
 	Tags []string `json:"tags"`
 
+	// Type
+	// Enum: [0 200 800 1000 1120 1130 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1420 1500 1510 1650 1520 1550 1600 1700 1750 2600 2610 2620 2630 2640 2810 2820 2830 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 7010 7020 7030 7040 7050 7060 7070 7080 7090 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
+	Type int64 `json:"type,omitempty"`
+
 	// Untagged VLAN
 	UntaggedVlan *int64 `json:"untagged_vlan,omitempty"`
 
@@ -86,10 +86,6 @@ func (m *WritableVirtualMachineInterface) Validate(formats strfmt.Registry) erro
 	var res []error
 
 	if err := m.validateDescription(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateFormFactor(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -113,6 +109,10 @@ func (m *WritableVirtualMachineInterface) Validate(formats strfmt.Registry) erro
 		res = append(res, err)
 	}
 
+	if err := m.validateType(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -126,40 +126,6 @@ func (m *WritableVirtualMachineInterface) validateDescription(formats strfmt.Reg
 	}
 
 	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var writableVirtualMachineInterfaceTypeFormFactorPropEnum []interface{}
-
-func init() {
-	var res []int64
-	if err := json.Unmarshal([]byte(`[0,200,800,1000,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1420,1500,1510,1650,1520,1550,1600,1700,1750,2600,2610,2620,2630,2640,2810,2820,2830,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		writableVirtualMachineInterfaceTypeFormFactorPropEnum = append(writableVirtualMachineInterfaceTypeFormFactorPropEnum, v)
-	}
-}
-
-// prop value enum
-func (m *WritableVirtualMachineInterface) validateFormFactorEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableVirtualMachineInterfaceTypeFormFactorPropEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *WritableVirtualMachineInterface) validateFormFactor(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.FormFactor) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateFormFactorEnum("form_factor", "body", m.FormFactor); err != nil {
 		return err
 	}
 
@@ -259,6 +225,40 @@ func (m *WritableVirtualMachineInterface) validateTags(formats strfmt.Registry) 
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+var writableVirtualMachineInterfaceTypeTypePropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[0,200,800,1000,1120,1130,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1420,1500,1510,1650,1520,1550,1600,1700,1750,2600,2610,2620,2630,2640,2810,2820,2830,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,7010,7020,7030,7040,7050,7060,7070,7080,7090,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableVirtualMachineInterfaceTypeTypePropEnum = append(writableVirtualMachineInterfaceTypeTypePropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritableVirtualMachineInterface) validateTypeEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableVirtualMachineInterfaceTypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WritableVirtualMachineInterface) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

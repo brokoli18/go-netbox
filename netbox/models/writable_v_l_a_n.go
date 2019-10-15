@@ -68,6 +68,10 @@ type WritableVLAN struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
+	// Prefix count
+	// Read Only: true
+	PrefixCount int64 `json:"prefix_count,omitempty"`
+
 	// Role
 	Role *int64 `json:"role,omitempty"`
 

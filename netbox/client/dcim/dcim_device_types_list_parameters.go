@@ -122,7 +122,7 @@ type DcimDeviceTypesListParams struct {
 	/*Tag*/
 	Tag *string
 	/*UHeight*/
-	UHeight *float64
+	UHeight *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -361,13 +361,13 @@ func (o *DcimDeviceTypesListParams) SetTag(tag *string) {
 }
 
 // WithUHeight adds the uHeight to the dcim device types list params
-func (o *DcimDeviceTypesListParams) WithUHeight(uHeight *float64) *DcimDeviceTypesListParams {
+func (o *DcimDeviceTypesListParams) WithUHeight(uHeight *string) *DcimDeviceTypesListParams {
 	o.SetUHeight(uHeight)
 	return o
 }
 
 // SetUHeight adds the uHeight to the dcim device types list params
-func (o *DcimDeviceTypesListParams) SetUHeight(uHeight *float64) {
+func (o *DcimDeviceTypesListParams) SetUHeight(uHeight *string) {
 	o.UHeight = uHeight
 }
 
@@ -670,11 +670,11 @@ func (o *DcimDeviceTypesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 	if o.UHeight != nil {
 
 		// query param u_height
-		var qrUHeight float64
+		var qrUHeight string
 		if o.UHeight != nil {
 			qrUHeight = *o.UHeight
 		}
-		qUHeight := swag.FormatFloat64(qrUHeight)
+		qUHeight := qrUHeight
 		if qUHeight != "" {
 			if err := r.SetQueryParam("u_height", qUHeight); err != nil {
 				return err

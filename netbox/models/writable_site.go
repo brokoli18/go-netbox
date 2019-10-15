@@ -39,6 +39,10 @@ type WritableSite struct {
 	// Minimum: 1
 	Asn *int64 `json:"asn,omitempty"`
 
+	// Circuit count
+	// Read Only: true
+	CircuitCount int64 `json:"circuit_count,omitempty"`
+
 	// Comments
 	Comments string `json:"comments,omitempty"`
 
@@ -55,26 +59,6 @@ type WritableSite struct {
 	// Max Length: 20
 	ContactPhone string `json:"contact_phone,omitempty"`
 
-	// Count circuits
-	// Read Only: true
-	CountCircuits int64 `json:"count_circuits,omitempty"`
-
-	// Count devices
-	// Read Only: true
-	CountDevices int64 `json:"count_devices,omitempty"`
-
-	// Count prefixes
-	// Read Only: true
-	CountPrefixes int64 `json:"count_prefixes,omitempty"`
-
-	// Count racks
-	// Read Only: true
-	CountRacks int64 `json:"count_racks,omitempty"`
-
-	// Count vlans
-	// Read Only: true
-	CountVlans int64 `json:"count_vlans,omitempty"`
-
 	// Created
 	// Read Only: true
 	// Format: date
@@ -86,6 +70,10 @@ type WritableSite struct {
 	// Description
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
+
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
 
 	// Facility
 	// Max Length: 50
@@ -116,6 +104,14 @@ type WritableSite struct {
 	// Max Length: 200
 	PhysicalAddress string `json:"physical_address,omitempty"`
 
+	// Prefix count
+	// Read Only: true
+	PrefixCount int64 `json:"prefix_count,omitempty"`
+
+	// Rack count
+	// Read Only: true
+	RackCount int64 `json:"rack_count,omitempty"`
+
 	// Region
 	Region *int64 `json:"region,omitempty"`
 
@@ -142,6 +138,14 @@ type WritableSite struct {
 
 	// Time zone
 	TimeZone string `json:"time_zone,omitempty"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
+
+	// Vlan count
+	// Read Only: true
+	VlanCount int64 `json:"vlan_count,omitempty"`
 }
 
 // Validate validates this writable site

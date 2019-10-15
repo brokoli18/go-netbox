@@ -52,6 +52,13 @@ type WritableIPAddress struct {
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
 
+	// DNS Name
+	//
+	// Hostname or FQDN (not case-sensitive)
+	// Max Length: 255
+	// Pattern: ^[0-9A-Za-z.-]+$
+	DNSName string `json:"dns_name,omitempty"`
+
 	// Family
 	// Read Only: true
 	Family int64 `json:"family,omitempty"`
@@ -115,6 +122,10 @@ func (m *WritableIPAddress) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDNSName(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLastUpdated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -170,6 +181,23 @@ func (m *WritableIPAddress) validateDescription(formats strfmt.Registry) error {
 	}
 
 	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritableIPAddress) validateDNSName(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.DNSName) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("dns_name", "body", string(m.DNSName), 255); err != nil {
+		return err
+	}
+
+	if err := validate.Pattern("dns_name", "body", string(m.DNSName), `^[0-9A-Za-z.-]+$`); err != nil {
 		return err
 	}
 

@@ -78,6 +78,8 @@ type VirtualizationInterfacesListParams struct {
 
 	/*Enabled*/
 	Enabled *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -86,7 +88,7 @@ type VirtualizationInterfacesListParams struct {
 	/*MacAddress*/
 	MacAddress *string
 	/*Mtu*/
-	Mtu *float64
+	Mtu *string
 	/*Name*/
 	Name *string
 	/*Offset
@@ -150,6 +152,17 @@ func (o *VirtualizationInterfacesListParams) SetEnabled(enabled *string) {
 	o.Enabled = enabled
 }
 
+// WithID adds the id to the virtualization interfaces list params
+func (o *VirtualizationInterfacesListParams) WithID(id *string) *VirtualizationInterfacesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the virtualization interfaces list params
+func (o *VirtualizationInterfacesListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithLimit adds the limit to the virtualization interfaces list params
 func (o *VirtualizationInterfacesListParams) WithLimit(limit *int64) *VirtualizationInterfacesListParams {
 	o.SetLimit(limit)
@@ -173,13 +186,13 @@ func (o *VirtualizationInterfacesListParams) SetMacAddress(macAddress *string) {
 }
 
 // WithMtu adds the mtu to the virtualization interfaces list params
-func (o *VirtualizationInterfacesListParams) WithMtu(mtu *float64) *VirtualizationInterfacesListParams {
+func (o *VirtualizationInterfacesListParams) WithMtu(mtu *string) *VirtualizationInterfacesListParams {
 	o.SetMtu(mtu)
 	return o
 }
 
 // SetMtu adds the mtu to the virtualization interfaces list params
-func (o *VirtualizationInterfacesListParams) SetMtu(mtu *float64) {
+func (o *VirtualizationInterfacesListParams) SetMtu(mtu *string) {
 	o.Mtu = mtu
 }
 
@@ -262,6 +275,22 @@ func (o *VirtualizationInterfacesListParams) WriteToRequest(r runtime.ClientRequ
 
 	}
 
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -297,11 +326,11 @@ func (o *VirtualizationInterfacesListParams) WriteToRequest(r runtime.ClientRequ
 	if o.Mtu != nil {
 
 		// query param mtu
-		var qrMtu float64
+		var qrMtu string
 		if o.Mtu != nil {
 			qrMtu = *o.Mtu
 		}
-		qMtu := swag.FormatFloat64(qrMtu)
+		qMtu := qrMtu
 		if qMtu != "" {
 			if err := r.SetQueryParam("mtu", qMtu); err != nil {
 				return err

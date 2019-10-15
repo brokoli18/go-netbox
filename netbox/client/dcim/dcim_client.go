@@ -181,7 +181,7 @@ func (a *Client) DcimCablesDelete(params *DcimCablesDeleteParams, authInfo runti
 }
 
 /*
-DcimCablesList dcim cables list API
+DcimCablesList Call to super to allow for caching
 */
 func (a *Client) DcimCablesList(params *DcimCablesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimCablesListOK, error) {
 	// TODO: Validate the params before sending
@@ -251,7 +251,7 @@ func (a *Client) DcimCablesPartialUpdate(params *DcimCablesPartialUpdateParams, 
 }
 
 /*
-DcimCablesRead dcim cables read API
+DcimCablesRead Call to super to allow for caching
 */
 func (a *Client) DcimCablesRead(params *DcimCablesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimCablesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -466,7 +466,7 @@ func (a *Client) DcimConsolePortTemplatesDelete(params *DcimConsolePortTemplates
 }
 
 /*
-DcimConsolePortTemplatesList dcim console port templates list API
+DcimConsolePortTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimConsolePortTemplatesList(params *DcimConsolePortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsolePortTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -536,7 +536,7 @@ func (a *Client) DcimConsolePortTemplatesPartialUpdate(params *DcimConsolePortTe
 }
 
 /*
-DcimConsolePortTemplatesRead dcim console port templates read API
+DcimConsolePortTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimConsolePortTemplatesRead(params *DcimConsolePortTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsolePortTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -676,7 +676,7 @@ func (a *Client) DcimConsolePortsDelete(params *DcimConsolePortsDeleteParams, au
 }
 
 /*
-DcimConsolePortsList dcim console ports list API
+DcimConsolePortsList Call to super to allow for caching
 */
 func (a *Client) DcimConsolePortsList(params *DcimConsolePortsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsolePortsListOK, error) {
 	// TODO: Validate the params before sending
@@ -746,7 +746,7 @@ func (a *Client) DcimConsolePortsPartialUpdate(params *DcimConsolePortsPartialUp
 }
 
 /*
-DcimConsolePortsRead dcim console ports read API
+DcimConsolePortsRead Call to super to allow for caching
 */
 func (a *Client) DcimConsolePortsRead(params *DcimConsolePortsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsolePortsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -921,7 +921,7 @@ func (a *Client) DcimConsoleServerPortTemplatesDelete(params *DcimConsoleServerP
 }
 
 /*
-DcimConsoleServerPortTemplatesList dcim console server port templates list API
+DcimConsoleServerPortTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimConsoleServerPortTemplatesList(params *DcimConsoleServerPortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsoleServerPortTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -991,7 +991,7 @@ func (a *Client) DcimConsoleServerPortTemplatesPartialUpdate(params *DcimConsole
 }
 
 /*
-DcimConsoleServerPortTemplatesRead dcim console server port templates read API
+DcimConsoleServerPortTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimConsoleServerPortTemplatesRead(params *DcimConsoleServerPortTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsoleServerPortTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1131,7 +1131,7 @@ func (a *Client) DcimConsoleServerPortsDelete(params *DcimConsoleServerPortsDele
 }
 
 /*
-DcimConsoleServerPortsList dcim console server ports list API
+DcimConsoleServerPortsList Call to super to allow for caching
 */
 func (a *Client) DcimConsoleServerPortsList(params *DcimConsoleServerPortsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsoleServerPortsListOK, error) {
 	// TODO: Validate the params before sending
@@ -1201,7 +1201,7 @@ func (a *Client) DcimConsoleServerPortsPartialUpdate(params *DcimConsoleServerPo
 }
 
 /*
-DcimConsoleServerPortsRead dcim console server ports read API
+DcimConsoleServerPortsRead Call to super to allow for caching
 */
 func (a *Client) DcimConsoleServerPortsRead(params *DcimConsoleServerPortsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimConsoleServerPortsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1376,7 +1376,7 @@ func (a *Client) DcimDeviceBayTemplatesDelete(params *DcimDeviceBayTemplatesDele
 }
 
 /*
-DcimDeviceBayTemplatesList dcim device bay templates list API
+DcimDeviceBayTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimDeviceBayTemplatesList(params *DcimDeviceBayTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceBayTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -1446,7 +1446,7 @@ func (a *Client) DcimDeviceBayTemplatesPartialUpdate(params *DcimDeviceBayTempla
 }
 
 /*
-DcimDeviceBayTemplatesRead dcim device bay templates read API
+DcimDeviceBayTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimDeviceBayTemplatesRead(params *DcimDeviceBayTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceBayTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1586,7 +1586,7 @@ func (a *Client) DcimDeviceBaysDelete(params *DcimDeviceBaysDeleteParams, authIn
 }
 
 /*
-DcimDeviceBaysList dcim device bays list API
+DcimDeviceBaysList Call to super to allow for caching
 */
 func (a *Client) DcimDeviceBaysList(params *DcimDeviceBaysListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceBaysListOK, error) {
 	// TODO: Validate the params before sending
@@ -1656,7 +1656,7 @@ func (a *Client) DcimDeviceBaysPartialUpdate(params *DcimDeviceBaysPartialUpdate
 }
 
 /*
-DcimDeviceBaysRead dcim device bays read API
+DcimDeviceBaysRead Call to super to allow for caching
 */
 func (a *Client) DcimDeviceBaysRead(params *DcimDeviceBaysReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceBaysReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1796,7 +1796,7 @@ func (a *Client) DcimDeviceRolesDelete(params *DcimDeviceRolesDeleteParams, auth
 }
 
 /*
-DcimDeviceRolesList dcim device roles list API
+DcimDeviceRolesList Call to super to allow for caching
 */
 func (a *Client) DcimDeviceRolesList(params *DcimDeviceRolesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceRolesListOK, error) {
 	// TODO: Validate the params before sending
@@ -1866,7 +1866,7 @@ func (a *Client) DcimDeviceRolesPartialUpdate(params *DcimDeviceRolesPartialUpda
 }
 
 /*
-DcimDeviceRolesRead dcim device roles read API
+DcimDeviceRolesRead Call to super to allow for caching
 */
 func (a *Client) DcimDeviceRolesRead(params *DcimDeviceRolesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceRolesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -2006,7 +2006,7 @@ func (a *Client) DcimDeviceTypesDelete(params *DcimDeviceTypesDeleteParams, auth
 }
 
 /*
-DcimDeviceTypesList dcim device types list API
+DcimDeviceTypesList Call to super to allow for caching
 */
 func (a *Client) DcimDeviceTypesList(params *DcimDeviceTypesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceTypesListOK, error) {
 	// TODO: Validate the params before sending
@@ -2076,7 +2076,7 @@ func (a *Client) DcimDeviceTypesPartialUpdate(params *DcimDeviceTypesPartialUpda
 }
 
 /*
-DcimDeviceTypesRead dcim device types read API
+DcimDeviceTypesRead Call to super to allow for caching
 */
 func (a *Client) DcimDeviceTypesRead(params *DcimDeviceTypesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDeviceTypesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -2216,7 +2216,42 @@ func (a *Client) DcimDevicesDelete(params *DcimDevicesDeleteParams, authInfo run
 }
 
 /*
-DcimDevicesList dcim devices list API
+DcimDevicesGraphs A convenience method for rendering graphs for a particular Device.
+*/
+func (a *Client) DcimDevicesGraphs(params *DcimDevicesGraphsParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDevicesGraphsOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimDevicesGraphsParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_devices_graphs",
+		Method:             "GET",
+		PathPattern:        "/dcim/devices/{id}/graphs/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimDevicesGraphsReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimDevicesGraphsOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_devices_graphs: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimDevicesList Call to super to allow for caching
 */
 func (a *Client) DcimDevicesList(params *DcimDevicesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDevicesListOK, error) {
 	// TODO: Validate the params before sending
@@ -2321,7 +2356,7 @@ func (a *Client) DcimDevicesPartialUpdate(params *DcimDevicesPartialUpdateParams
 }
 
 /*
-DcimDevicesRead dcim devices read API
+DcimDevicesRead Call to super to allow for caching
 */
 func (a *Client) DcimDevicesRead(params *DcimDevicesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimDevicesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -2461,7 +2496,7 @@ func (a *Client) DcimFrontPortTemplatesDelete(params *DcimFrontPortTemplatesDele
 }
 
 /*
-DcimFrontPortTemplatesList dcim front port templates list API
+DcimFrontPortTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimFrontPortTemplatesList(params *DcimFrontPortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -2531,7 +2566,7 @@ func (a *Client) DcimFrontPortTemplatesPartialUpdate(params *DcimFrontPortTempla
 }
 
 /*
-DcimFrontPortTemplatesRead dcim front port templates read API
+DcimFrontPortTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimFrontPortTemplatesRead(params *DcimFrontPortTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -2671,7 +2706,7 @@ func (a *Client) DcimFrontPortsDelete(params *DcimFrontPortsDeleteParams, authIn
 }
 
 /*
-DcimFrontPortsList dcim front ports list API
+DcimFrontPortsList Call to super to allow for caching
 */
 func (a *Client) DcimFrontPortsList(params *DcimFrontPortsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortsListOK, error) {
 	// TODO: Validate the params before sending
@@ -2741,7 +2776,7 @@ func (a *Client) DcimFrontPortsPartialUpdate(params *DcimFrontPortsPartialUpdate
 }
 
 /*
-DcimFrontPortsRead dcim front ports read API
+DcimFrontPortsRead Call to super to allow for caching
 */
 func (a *Client) DcimFrontPortsRead(params *DcimFrontPortsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimFrontPortsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -2916,7 +2951,7 @@ func (a *Client) DcimInterfaceTemplatesDelete(params *DcimInterfaceTemplatesDele
 }
 
 /*
-DcimInterfaceTemplatesList dcim interface templates list API
+DcimInterfaceTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimInterfaceTemplatesList(params *DcimInterfaceTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfaceTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -2986,7 +3021,7 @@ func (a *Client) DcimInterfaceTemplatesPartialUpdate(params *DcimInterfaceTempla
 }
 
 /*
-DcimInterfaceTemplatesRead dcim interface templates read API
+DcimInterfaceTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimInterfaceTemplatesRead(params *DcimInterfaceTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfaceTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -3161,7 +3196,7 @@ func (a *Client) DcimInterfacesGraphs(params *DcimInterfacesGraphsParams, authIn
 }
 
 /*
-DcimInterfacesList dcim interfaces list API
+DcimInterfacesList Call to super to allow for caching
 */
 func (a *Client) DcimInterfacesList(params *DcimInterfacesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfacesListOK, error) {
 	// TODO: Validate the params before sending
@@ -3231,7 +3266,7 @@ func (a *Client) DcimInterfacesPartialUpdate(params *DcimInterfacesPartialUpdate
 }
 
 /*
-DcimInterfacesRead dcim interfaces read API
+DcimInterfacesRead Call to super to allow for caching
 */
 func (a *Client) DcimInterfacesRead(params *DcimInterfacesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInterfacesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -3406,7 +3441,7 @@ func (a *Client) DcimInventoryItemsDelete(params *DcimInventoryItemsDeleteParams
 }
 
 /*
-DcimInventoryItemsList dcim inventory items list API
+DcimInventoryItemsList Call to super to allow for caching
 */
 func (a *Client) DcimInventoryItemsList(params *DcimInventoryItemsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInventoryItemsListOK, error) {
 	// TODO: Validate the params before sending
@@ -3476,7 +3511,7 @@ func (a *Client) DcimInventoryItemsPartialUpdate(params *DcimInventoryItemsParti
 }
 
 /*
-DcimInventoryItemsRead dcim inventory items read API
+DcimInventoryItemsRead Call to super to allow for caching
 */
 func (a *Client) DcimInventoryItemsRead(params *DcimInventoryItemsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimInventoryItemsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -3616,7 +3651,7 @@ func (a *Client) DcimManufacturersDelete(params *DcimManufacturersDeleteParams, 
 }
 
 /*
-DcimManufacturersList dcim manufacturers list API
+DcimManufacturersList Call to super to allow for caching
 */
 func (a *Client) DcimManufacturersList(params *DcimManufacturersListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimManufacturersListOK, error) {
 	// TODO: Validate the params before sending
@@ -3686,7 +3721,7 @@ func (a *Client) DcimManufacturersPartialUpdate(params *DcimManufacturersPartial
 }
 
 /*
-DcimManufacturersRead dcim manufacturers read API
+DcimManufacturersRead Call to super to allow for caching
 */
 func (a *Client) DcimManufacturersRead(params *DcimManufacturersReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimManufacturersReadOK, error) {
 	// TODO: Validate the params before sending
@@ -3826,7 +3861,7 @@ func (a *Client) DcimPlatformsDelete(params *DcimPlatformsDeleteParams, authInfo
 }
 
 /*
-DcimPlatformsList dcim platforms list API
+DcimPlatformsList Call to super to allow for caching
 */
 func (a *Client) DcimPlatformsList(params *DcimPlatformsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPlatformsListOK, error) {
 	// TODO: Validate the params before sending
@@ -3896,7 +3931,7 @@ func (a *Client) DcimPlatformsPartialUpdate(params *DcimPlatformsPartialUpdatePa
 }
 
 /*
-DcimPlatformsRead dcim platforms read API
+DcimPlatformsRead Call to super to allow for caching
 */
 func (a *Client) DcimPlatformsRead(params *DcimPlatformsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPlatformsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -4001,6 +4036,216 @@ func (a *Client) DcimPowerConnectionsList(params *DcimPowerConnectionsListParams
 }
 
 /*
+DcimPowerFeedsCreate dcim power feeds create API
+*/
+func (a *Client) DcimPowerFeedsCreate(params *DcimPowerFeedsCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsCreateCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsCreateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_create",
+		Method:             "POST",
+		PathPattern:        "/dcim/power-feeds/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsCreateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsCreateCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_create: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerFeedsDelete dcim power feeds delete API
+*/
+func (a *Client) DcimPowerFeedsDelete(params *DcimPowerFeedsDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsDeleteNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsDeleteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_delete",
+		Method:             "DELETE",
+		PathPattern:        "/dcim/power-feeds/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsDeleteNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_delete: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerFeedsList Call to super to allow for caching
+*/
+func (a *Client) DcimPowerFeedsList(params *DcimPowerFeedsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_list",
+		Method:             "GET",
+		PathPattern:        "/dcim/power-feeds/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_list: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerFeedsPartialUpdate dcim power feeds partial update API
+*/
+func (a *Client) DcimPowerFeedsPartialUpdate(params *DcimPowerFeedsPartialUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsPartialUpdateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsPartialUpdateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_partial_update",
+		Method:             "PATCH",
+		PathPattern:        "/dcim/power-feeds/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsPartialUpdateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsPartialUpdateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_partial_update: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerFeedsRead Call to super to allow for caching
+*/
+func (a *Client) DcimPowerFeedsRead(params *DcimPowerFeedsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsReadOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsReadParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_read",
+		Method:             "GET",
+		PathPattern:        "/dcim/power-feeds/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsReadReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsReadOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_read: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerFeedsUpdate dcim power feeds update API
+*/
+func (a *Client) DcimPowerFeedsUpdate(params *DcimPowerFeedsUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerFeedsUpdateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerFeedsUpdateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-feeds_update",
+		Method:             "PUT",
+		PathPattern:        "/dcim/power-feeds/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerFeedsUpdateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerFeedsUpdateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-feeds_update: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 DcimPowerOutletTemplatesCreate dcim power outlet templates create API
 */
 func (a *Client) DcimPowerOutletTemplatesCreate(params *DcimPowerOutletTemplatesCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerOutletTemplatesCreateCreated, error) {
@@ -4071,7 +4316,7 @@ func (a *Client) DcimPowerOutletTemplatesDelete(params *DcimPowerOutletTemplates
 }
 
 /*
-DcimPowerOutletTemplatesList dcim power outlet templates list API
+DcimPowerOutletTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimPowerOutletTemplatesList(params *DcimPowerOutletTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerOutletTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -4141,7 +4386,7 @@ func (a *Client) DcimPowerOutletTemplatesPartialUpdate(params *DcimPowerOutletTe
 }
 
 /*
-DcimPowerOutletTemplatesRead dcim power outlet templates read API
+DcimPowerOutletTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimPowerOutletTemplatesRead(params *DcimPowerOutletTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerOutletTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -4281,7 +4526,7 @@ func (a *Client) DcimPowerOutletsDelete(params *DcimPowerOutletsDeleteParams, au
 }
 
 /*
-DcimPowerOutletsList dcim power outlets list API
+DcimPowerOutletsList Call to super to allow for caching
 */
 func (a *Client) DcimPowerOutletsList(params *DcimPowerOutletsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerOutletsListOK, error) {
 	// TODO: Validate the params before sending
@@ -4351,7 +4596,7 @@ func (a *Client) DcimPowerOutletsPartialUpdate(params *DcimPowerOutletsPartialUp
 }
 
 /*
-DcimPowerOutletsRead dcim power outlets read API
+DcimPowerOutletsRead Call to super to allow for caching
 */
 func (a *Client) DcimPowerOutletsRead(params *DcimPowerOutletsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerOutletsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -4456,6 +4701,216 @@ func (a *Client) DcimPowerOutletsUpdate(params *DcimPowerOutletsUpdateParams, au
 }
 
 /*
+DcimPowerPanelsCreate dcim power panels create API
+*/
+func (a *Client) DcimPowerPanelsCreate(params *DcimPowerPanelsCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsCreateCreated, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsCreateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_create",
+		Method:             "POST",
+		PathPattern:        "/dcim/power-panels/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsCreateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsCreateCreated)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_create: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerPanelsDelete dcim power panels delete API
+*/
+func (a *Client) DcimPowerPanelsDelete(params *DcimPowerPanelsDeleteParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsDeleteNoContent, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsDeleteParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_delete",
+		Method:             "DELETE",
+		PathPattern:        "/dcim/power-panels/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsDeleteReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsDeleteNoContent)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_delete: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerPanelsList Call to super to allow for caching
+*/
+func (a *Client) DcimPowerPanelsList(params *DcimPowerPanelsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_list",
+		Method:             "GET",
+		PathPattern:        "/dcim/power-panels/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_list: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerPanelsPartialUpdate dcim power panels partial update API
+*/
+func (a *Client) DcimPowerPanelsPartialUpdate(params *DcimPowerPanelsPartialUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsPartialUpdateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsPartialUpdateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_partial_update",
+		Method:             "PATCH",
+		PathPattern:        "/dcim/power-panels/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsPartialUpdateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsPartialUpdateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_partial_update: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerPanelsRead Call to super to allow for caching
+*/
+func (a *Client) DcimPowerPanelsRead(params *DcimPowerPanelsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsReadOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsReadParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_read",
+		Method:             "GET",
+		PathPattern:        "/dcim/power-panels/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsReadReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsReadOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_read: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+DcimPowerPanelsUpdate dcim power panels update API
+*/
+func (a *Client) DcimPowerPanelsUpdate(params *DcimPowerPanelsUpdateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPanelsUpdateOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewDcimPowerPanelsUpdateParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "dcim_power-panels_update",
+		Method:             "PUT",
+		PathPattern:        "/dcim/power-panels/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &DcimPowerPanelsUpdateReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*DcimPowerPanelsUpdateOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for dcim_power-panels_update: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 DcimPowerPortTemplatesCreate dcim power port templates create API
 */
 func (a *Client) DcimPowerPortTemplatesCreate(params *DcimPowerPortTemplatesCreateParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortTemplatesCreateCreated, error) {
@@ -4526,7 +4981,7 @@ func (a *Client) DcimPowerPortTemplatesDelete(params *DcimPowerPortTemplatesDele
 }
 
 /*
-DcimPowerPortTemplatesList dcim power port templates list API
+DcimPowerPortTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimPowerPortTemplatesList(params *DcimPowerPortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -4596,7 +5051,7 @@ func (a *Client) DcimPowerPortTemplatesPartialUpdate(params *DcimPowerPortTempla
 }
 
 /*
-DcimPowerPortTemplatesRead dcim power port templates read API
+DcimPowerPortTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimPowerPortTemplatesRead(params *DcimPowerPortTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -4736,7 +5191,7 @@ func (a *Client) DcimPowerPortsDelete(params *DcimPowerPortsDeleteParams, authIn
 }
 
 /*
-DcimPowerPortsList dcim power ports list API
+DcimPowerPortsList Call to super to allow for caching
 */
 func (a *Client) DcimPowerPortsList(params *DcimPowerPortsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortsListOK, error) {
 	// TODO: Validate the params before sending
@@ -4806,7 +5261,7 @@ func (a *Client) DcimPowerPortsPartialUpdate(params *DcimPowerPortsPartialUpdate
 }
 
 /*
-DcimPowerPortsRead dcim power ports read API
+DcimPowerPortsRead Call to super to allow for caching
 */
 func (a *Client) DcimPowerPortsRead(params *DcimPowerPortsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimPowerPortsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -4981,7 +5436,7 @@ func (a *Client) DcimRackGroupsDelete(params *DcimRackGroupsDeleteParams, authIn
 }
 
 /*
-DcimRackGroupsList dcim rack groups list API
+DcimRackGroupsList Call to super to allow for caching
 */
 func (a *Client) DcimRackGroupsList(params *DcimRackGroupsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackGroupsListOK, error) {
 	// TODO: Validate the params before sending
@@ -5051,7 +5506,7 @@ func (a *Client) DcimRackGroupsPartialUpdate(params *DcimRackGroupsPartialUpdate
 }
 
 /*
-DcimRackGroupsRead dcim rack groups read API
+DcimRackGroupsRead Call to super to allow for caching
 */
 func (a *Client) DcimRackGroupsRead(params *DcimRackGroupsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackGroupsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -5191,7 +5646,7 @@ func (a *Client) DcimRackReservationsDelete(params *DcimRackReservationsDeletePa
 }
 
 /*
-DcimRackReservationsList dcim rack reservations list API
+DcimRackReservationsList Call to super to allow for caching
 */
 func (a *Client) DcimRackReservationsList(params *DcimRackReservationsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackReservationsListOK, error) {
 	// TODO: Validate the params before sending
@@ -5261,7 +5716,7 @@ func (a *Client) DcimRackReservationsPartialUpdate(params *DcimRackReservationsP
 }
 
 /*
-DcimRackReservationsRead dcim rack reservations read API
+DcimRackReservationsRead Call to super to allow for caching
 */
 func (a *Client) DcimRackReservationsRead(params *DcimRackReservationsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackReservationsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -5401,7 +5856,7 @@ func (a *Client) DcimRackRolesDelete(params *DcimRackRolesDeleteParams, authInfo
 }
 
 /*
-DcimRackRolesList dcim rack roles list API
+DcimRackRolesList Call to super to allow for caching
 */
 func (a *Client) DcimRackRolesList(params *DcimRackRolesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackRolesListOK, error) {
 	// TODO: Validate the params before sending
@@ -5471,7 +5926,7 @@ func (a *Client) DcimRackRolesPartialUpdate(params *DcimRackRolesPartialUpdatePa
 }
 
 /*
-DcimRackRolesRead dcim rack roles read API
+DcimRackRolesRead Call to super to allow for caching
 */
 func (a *Client) DcimRackRolesRead(params *DcimRackRolesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRackRolesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -5611,7 +6066,7 @@ func (a *Client) DcimRacksDelete(params *DcimRacksDeleteParams, authInfo runtime
 }
 
 /*
-DcimRacksList dcim racks list API
+DcimRacksList Call to super to allow for caching
 */
 func (a *Client) DcimRacksList(params *DcimRacksListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRacksListOK, error) {
 	// TODO: Validate the params before sending
@@ -5681,7 +6136,7 @@ func (a *Client) DcimRacksPartialUpdate(params *DcimRacksPartialUpdateParams, au
 }
 
 /*
-DcimRacksRead dcim racks read API
+DcimRacksRead Call to super to allow for caching
 */
 func (a *Client) DcimRacksRead(params *DcimRacksReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRacksReadOK, error) {
 	// TODO: Validate the params before sending
@@ -5856,7 +6311,7 @@ func (a *Client) DcimRearPortTemplatesDelete(params *DcimRearPortTemplatesDelete
 }
 
 /*
-DcimRearPortTemplatesList dcim rear port templates list API
+DcimRearPortTemplatesList Call to super to allow for caching
 */
 func (a *Client) DcimRearPortTemplatesList(params *DcimRearPortTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRearPortTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -5926,7 +6381,7 @@ func (a *Client) DcimRearPortTemplatesPartialUpdate(params *DcimRearPortTemplate
 }
 
 /*
-DcimRearPortTemplatesRead dcim rear port templates read API
+DcimRearPortTemplatesRead Call to super to allow for caching
 */
 func (a *Client) DcimRearPortTemplatesRead(params *DcimRearPortTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRearPortTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -6066,7 +6521,7 @@ func (a *Client) DcimRearPortsDelete(params *DcimRearPortsDeleteParams, authInfo
 }
 
 /*
-DcimRearPortsList dcim rear ports list API
+DcimRearPortsList Call to super to allow for caching
 */
 func (a *Client) DcimRearPortsList(params *DcimRearPortsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRearPortsListOK, error) {
 	// TODO: Validate the params before sending
@@ -6136,7 +6591,7 @@ func (a *Client) DcimRearPortsPartialUpdate(params *DcimRearPortsPartialUpdatePa
 }
 
 /*
-DcimRearPortsRead dcim rear ports read API
+DcimRearPortsRead Call to super to allow for caching
 */
 func (a *Client) DcimRearPortsRead(params *DcimRearPortsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRearPortsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -6276,7 +6731,7 @@ func (a *Client) DcimRegionsDelete(params *DcimRegionsDeleteParams, authInfo run
 }
 
 /*
-DcimRegionsList dcim regions list API
+DcimRegionsList Call to super to allow for caching
 */
 func (a *Client) DcimRegionsList(params *DcimRegionsListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRegionsListOK, error) {
 	// TODO: Validate the params before sending
@@ -6346,7 +6801,7 @@ func (a *Client) DcimRegionsPartialUpdate(params *DcimRegionsPartialUpdateParams
 }
 
 /*
-DcimRegionsRead dcim regions read API
+DcimRegionsRead Call to super to allow for caching
 */
 func (a *Client) DcimRegionsRead(params *DcimRegionsReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimRegionsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -6521,7 +6976,7 @@ func (a *Client) DcimSitesGraphs(params *DcimSitesGraphsParams, authInfo runtime
 }
 
 /*
-DcimSitesList dcim sites list API
+DcimSitesList Call to super to allow for caching
 */
 func (a *Client) DcimSitesList(params *DcimSitesListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimSitesListOK, error) {
 	// TODO: Validate the params before sending
@@ -6591,7 +7046,7 @@ func (a *Client) DcimSitesPartialUpdate(params *DcimSitesPartialUpdateParams, au
 }
 
 /*
-DcimSitesRead dcim sites read API
+DcimSitesRead Call to super to allow for caching
 */
 func (a *Client) DcimSitesRead(params *DcimSitesReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimSitesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -6731,7 +7186,7 @@ func (a *Client) DcimVirtualChassisDelete(params *DcimVirtualChassisDeleteParams
 }
 
 /*
-DcimVirtualChassisList dcim virtual chassis list API
+DcimVirtualChassisList Call to super to allow for caching
 */
 func (a *Client) DcimVirtualChassisList(params *DcimVirtualChassisListParams, authInfo runtime.ClientAuthInfoWriter) (*DcimVirtualChassisListOK, error) {
 	// TODO: Validate the params before sending
@@ -6801,7 +7256,7 @@ func (a *Client) DcimVirtualChassisPartialUpdate(params *DcimVirtualChassisParti
 }
 
 /*
-DcimVirtualChassisRead dcim virtual chassis read API
+DcimVirtualChassisRead Call to super to allow for caching
 */
 func (a *Client) DcimVirtualChassisRead(params *DcimVirtualChassisReadParams, authInfo runtime.ClientAuthInfoWriter) (*DcimVirtualChassisReadOK, error) {
 	// TODO: Validate the params before sending

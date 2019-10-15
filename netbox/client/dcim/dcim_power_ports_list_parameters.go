@@ -76,19 +76,27 @@ for the dcim power ports list operation typically these are written to a http.Re
 */
 type DcimPowerPortsListParams struct {
 
+	/*AllocatedDraw*/
+	AllocatedDraw *string
 	/*Cabled*/
 	Cabled *string
 	/*ConnectionStatus*/
 	ConnectionStatus *string
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
 	*/
 	Limit *int64
+	/*MaximumDraw*/
+	MaximumDraw *string
 	/*Name*/
 	Name *string
 	/*Offset
@@ -139,6 +147,17 @@ func (o *DcimPowerPortsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithAllocatedDraw adds the allocatedDraw to the dcim power ports list params
+func (o *DcimPowerPortsListParams) WithAllocatedDraw(allocatedDraw *string) *DcimPowerPortsListParams {
+	o.SetAllocatedDraw(allocatedDraw)
+	return o
+}
+
+// SetAllocatedDraw adds the allocatedDraw to the dcim power ports list params
+func (o *DcimPowerPortsListParams) SetAllocatedDraw(allocatedDraw *string) {
+	o.AllocatedDraw = allocatedDraw
+}
+
 // WithCabled adds the cabled to the dcim power ports list params
 func (o *DcimPowerPortsListParams) WithCabled(cabled *string) *DcimPowerPortsListParams {
 	o.SetCabled(cabled)
@@ -159,6 +178,17 @@ func (o *DcimPowerPortsListParams) WithConnectionStatus(connectionStatus *string
 // SetConnectionStatus adds the connectionStatus to the dcim power ports list params
 func (o *DcimPowerPortsListParams) SetConnectionStatus(connectionStatus *string) {
 	o.ConnectionStatus = connectionStatus
+}
+
+// WithDescription adds the description to the dcim power ports list params
+func (o *DcimPowerPortsListParams) WithDescription(description *string) *DcimPowerPortsListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim power ports list params
+func (o *DcimPowerPortsListParams) SetDescription(description *string) {
+	o.Description = description
 }
 
 // WithDevice adds the device to the dcim power ports list params
@@ -183,6 +213,17 @@ func (o *DcimPowerPortsListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
+// WithID adds the id to the dcim power ports list params
+func (o *DcimPowerPortsListParams) WithID(id *string) *DcimPowerPortsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim power ports list params
+func (o *DcimPowerPortsListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithLimit adds the limit to the dcim power ports list params
 func (o *DcimPowerPortsListParams) WithLimit(limit *int64) *DcimPowerPortsListParams {
 	o.SetLimit(limit)
@@ -192,6 +233,17 @@ func (o *DcimPowerPortsListParams) WithLimit(limit *int64) *DcimPowerPortsListPa
 // SetLimit adds the limit to the dcim power ports list params
 func (o *DcimPowerPortsListParams) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithMaximumDraw adds the maximumDraw to the dcim power ports list params
+func (o *DcimPowerPortsListParams) WithMaximumDraw(maximumDraw *string) *DcimPowerPortsListParams {
+	o.SetMaximumDraw(maximumDraw)
+	return o
+}
+
+// SetMaximumDraw adds the maximumDraw to the dcim power ports list params
+func (o *DcimPowerPortsListParams) SetMaximumDraw(maximumDraw *string) {
+	o.MaximumDraw = maximumDraw
 }
 
 // WithName adds the name to the dcim power ports list params
@@ -246,6 +298,22 @@ func (o *DcimPowerPortsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
+	if o.AllocatedDraw != nil {
+
+		// query param allocated_draw
+		var qrAllocatedDraw string
+		if o.AllocatedDraw != nil {
+			qrAllocatedDraw = *o.AllocatedDraw
+		}
+		qAllocatedDraw := qrAllocatedDraw
+		if qAllocatedDraw != "" {
+			if err := r.SetQueryParam("allocated_draw", qAllocatedDraw); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Cabled != nil {
 
 		// query param cabled
@@ -272,6 +340,22 @@ func (o *DcimPowerPortsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qConnectionStatus := qrConnectionStatus
 		if qConnectionStatus != "" {
 			if err := r.SetQueryParam("connection_status", qConnectionStatus); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
 				return err
 			}
 		}
@@ -310,6 +394,22 @@ func (o *DcimPowerPortsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 	}
 
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -320,6 +420,22 @@ func (o *DcimPowerPortsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.MaximumDraw != nil {
+
+		// query param maximum_draw
+		var qrMaximumDraw string
+		if o.MaximumDraw != nil {
+			qrMaximumDraw = *o.MaximumDraw
+		}
+		qMaximumDraw := qrMaximumDraw
+		if qMaximumDraw != "" {
+			if err := r.SetQueryParam("maximum_draw", qMaximumDraw); err != nil {
 				return err
 			}
 		}

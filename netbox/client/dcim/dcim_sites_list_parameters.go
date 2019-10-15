@@ -77,7 +77,7 @@ for the dcim sites list operation typically these are written to a http.Request
 type DcimSitesListParams struct {
 
 	/*Asn*/
-	Asn *float64
+	Asn *string
 	/*ContactEmail*/
 	ContactEmail *string
 	/*ContactName*/
@@ -86,16 +86,22 @@ type DcimSitesListParams struct {
 	ContactPhone *string
 	/*Facility*/
 	Facility *string
+	/*ID*/
+	ID *string
 	/*IDIn
 	  Multiple values may be separated by commas.
 
 	*/
 	IDIn *string
+	/*Latitude*/
+	Latitude *string
 	/*Limit
 	  Number of results to return per page.
 
 	*/
 	Limit *int64
+	/*Longitude*/
+	Longitude *string
 	/*Name*/
 	Name *string
 	/*Offset
@@ -117,6 +123,10 @@ type DcimSitesListParams struct {
 	Tag *string
 	/*Tenant*/
 	Tenant *string
+	/*TenantGroup*/
+	TenantGroup *string
+	/*TenantGroupID*/
+	TenantGroupID *string
 	/*TenantID*/
 	TenantID *string
 
@@ -159,13 +169,13 @@ func (o *DcimSitesListParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithAsn adds the asn to the dcim sites list params
-func (o *DcimSitesListParams) WithAsn(asn *float64) *DcimSitesListParams {
+func (o *DcimSitesListParams) WithAsn(asn *string) *DcimSitesListParams {
 	o.SetAsn(asn)
 	return o
 }
 
 // SetAsn adds the asn to the dcim sites list params
-func (o *DcimSitesListParams) SetAsn(asn *float64) {
+func (o *DcimSitesListParams) SetAsn(asn *string) {
 	o.Asn = asn
 }
 
@@ -213,6 +223,17 @@ func (o *DcimSitesListParams) SetFacility(facility *string) {
 	o.Facility = facility
 }
 
+// WithID adds the id to the dcim sites list params
+func (o *DcimSitesListParams) WithID(id *string) *DcimSitesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim sites list params
+func (o *DcimSitesListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithIDIn adds the iDIn to the dcim sites list params
 func (o *DcimSitesListParams) WithIDIn(iDIn *string) *DcimSitesListParams {
 	o.SetIDIn(iDIn)
@@ -224,6 +245,17 @@ func (o *DcimSitesListParams) SetIDIn(iDIn *string) {
 	o.IDIn = iDIn
 }
 
+// WithLatitude adds the latitude to the dcim sites list params
+func (o *DcimSitesListParams) WithLatitude(latitude *string) *DcimSitesListParams {
+	o.SetLatitude(latitude)
+	return o
+}
+
+// SetLatitude adds the latitude to the dcim sites list params
+func (o *DcimSitesListParams) SetLatitude(latitude *string) {
+	o.Latitude = latitude
+}
+
 // WithLimit adds the limit to the dcim sites list params
 func (o *DcimSitesListParams) WithLimit(limit *int64) *DcimSitesListParams {
 	o.SetLimit(limit)
@@ -233,6 +265,17 @@ func (o *DcimSitesListParams) WithLimit(limit *int64) *DcimSitesListParams {
 // SetLimit adds the limit to the dcim sites list params
 func (o *DcimSitesListParams) SetLimit(limit *int64) {
 	o.Limit = limit
+}
+
+// WithLongitude adds the longitude to the dcim sites list params
+func (o *DcimSitesListParams) WithLongitude(longitude *string) *DcimSitesListParams {
+	o.SetLongitude(longitude)
+	return o
+}
+
+// SetLongitude adds the longitude to the dcim sites list params
+func (o *DcimSitesListParams) SetLongitude(longitude *string) {
+	o.Longitude = longitude
 }
 
 // WithName adds the name to the dcim sites list params
@@ -334,6 +377,28 @@ func (o *DcimSitesListParams) SetTenant(tenant *string) {
 	o.Tenant = tenant
 }
 
+// WithTenantGroup adds the tenantGroup to the dcim sites list params
+func (o *DcimSitesListParams) WithTenantGroup(tenantGroup *string) *DcimSitesListParams {
+	o.SetTenantGroup(tenantGroup)
+	return o
+}
+
+// SetTenantGroup adds the tenantGroup to the dcim sites list params
+func (o *DcimSitesListParams) SetTenantGroup(tenantGroup *string) {
+	o.TenantGroup = tenantGroup
+}
+
+// WithTenantGroupID adds the tenantGroupID to the dcim sites list params
+func (o *DcimSitesListParams) WithTenantGroupID(tenantGroupID *string) *DcimSitesListParams {
+	o.SetTenantGroupID(tenantGroupID)
+	return o
+}
+
+// SetTenantGroupID adds the tenantGroupId to the dcim sites list params
+func (o *DcimSitesListParams) SetTenantGroupID(tenantGroupID *string) {
+	o.TenantGroupID = tenantGroupID
+}
+
 // WithTenantID adds the tenantID to the dcim sites list params
 func (o *DcimSitesListParams) WithTenantID(tenantID *string) *DcimSitesListParams {
 	o.SetTenantID(tenantID)
@@ -356,11 +421,11 @@ func (o *DcimSitesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.Asn != nil {
 
 		// query param asn
-		var qrAsn float64
+		var qrAsn string
 		if o.Asn != nil {
 			qrAsn = *o.Asn
 		}
-		qAsn := swag.FormatFloat64(qrAsn)
+		qAsn := qrAsn
 		if qAsn != "" {
 			if err := r.SetQueryParam("asn", qAsn); err != nil {
 				return err
@@ -433,6 +498,22 @@ func (o *DcimSitesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 	}
 
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.IDIn != nil {
 
 		// query param id__in
@@ -449,6 +530,22 @@ func (o *DcimSitesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 	}
 
+	if o.Latitude != nil {
+
+		// query param latitude
+		var qrLatitude string
+		if o.Latitude != nil {
+			qrLatitude = *o.Latitude
+		}
+		qLatitude := qrLatitude
+		if qLatitude != "" {
+			if err := r.SetQueryParam("latitude", qLatitude); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -459,6 +556,22 @@ func (o *DcimSitesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qLimit := swag.FormatInt64(qrLimit)
 		if qLimit != "" {
 			if err := r.SetQueryParam("limit", qLimit); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Longitude != nil {
+
+		// query param longitude
+		var qrLongitude string
+		if o.Longitude != nil {
+			qrLongitude = *o.Longitude
+		}
+		qLongitude := qrLongitude
+		if qLongitude != "" {
+			if err := r.SetQueryParam("longitude", qLongitude); err != nil {
 				return err
 			}
 		}
@@ -603,6 +716,38 @@ func (o *DcimSitesListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 		qTenant := qrTenant
 		if qTenant != "" {
 			if err := r.SetQueryParam("tenant", qTenant); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroup != nil {
+
+		// query param tenant_group
+		var qrTenantGroup string
+		if o.TenantGroup != nil {
+			qrTenantGroup = *o.TenantGroup
+		}
+		qTenantGroup := qrTenantGroup
+		if qTenantGroup != "" {
+			if err := r.SetQueryParam("tenant_group", qTenantGroup); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroupID != nil {
+
+		// query param tenant_group_id
+		var qrTenantGroupID string
+		if o.TenantGroupID != nil {
+			qrTenantGroupID = *o.TenantGroupID
+		}
+		qTenantGroupID := qrTenantGroupID
+		if qTenantGroupID != "" {
+			if err := r.SetQueryParam("tenant_group_id", qTenantGroupID); err != nil {
 				return err
 			}
 		}

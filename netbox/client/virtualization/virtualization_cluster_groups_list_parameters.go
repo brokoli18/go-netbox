@@ -76,6 +76,8 @@ for the virtualization cluster groups list operation typically these are written
 */
 type VirtualizationClusterGroupsListParams struct {
 
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -129,6 +131,17 @@ func (o *VirtualizationClusterGroupsListParams) WithHTTPClient(client *http.Clie
 // SetHTTPClient adds the HTTPClient to the virtualization cluster groups list params
 func (o *VirtualizationClusterGroupsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithID adds the id to the virtualization cluster groups list params
+func (o *VirtualizationClusterGroupsListParams) WithID(id *string) *VirtualizationClusterGroupsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the virtualization cluster groups list params
+func (o *VirtualizationClusterGroupsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the virtualization cluster groups list params
@@ -193,6 +206,22 @@ func (o *VirtualizationClusterGroupsListParams) WriteToRequest(r runtime.ClientR
 		return err
 	}
 	var res []error
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

@@ -80,6 +80,8 @@ type IpamServicesListParams struct {
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -93,7 +95,7 @@ type IpamServicesListParams struct {
 	*/
 	Offset *int64
 	/*Port*/
-	Port *float64
+	Port *string
 	/*Protocol*/
 	Protocol *string
 	/*Q*/
@@ -165,6 +167,17 @@ func (o *IpamServicesListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
+// WithID adds the id to the ipam services list params
+func (o *IpamServicesListParams) WithID(id *string) *IpamServicesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the ipam services list params
+func (o *IpamServicesListParams) SetID(id *string) {
+	o.ID = id
+}
+
 // WithLimit adds the limit to the ipam services list params
 func (o *IpamServicesListParams) WithLimit(limit *int64) *IpamServicesListParams {
 	o.SetLimit(limit)
@@ -199,13 +212,13 @@ func (o *IpamServicesListParams) SetOffset(offset *int64) {
 }
 
 // WithPort adds the port to the ipam services list params
-func (o *IpamServicesListParams) WithPort(port *float64) *IpamServicesListParams {
+func (o *IpamServicesListParams) WithPort(port *string) *IpamServicesListParams {
 	o.SetPort(port)
 	return o
 }
 
 // SetPort adds the port to the ipam services list params
-func (o *IpamServicesListParams) SetPort(port *float64) {
+func (o *IpamServicesListParams) SetPort(port *string) {
 	o.Port = port
 }
 
@@ -304,6 +317,22 @@ func (o *IpamServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 
 	}
 
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Limit != nil {
 
 		// query param limit
@@ -355,11 +384,11 @@ func (o *IpamServicesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 	if o.Port != nil {
 
 		// query param port
-		var qrPort float64
+		var qrPort string
 		if o.Port != nil {
 			qrPort = *o.Port
 		}
-		qPort := swag.FormatFloat64(qrPort)
+		qPort := qrPort
 		if qPort != "" {
 			if err := r.SetQueryParam("port", qPort); err != nil {
 				return err

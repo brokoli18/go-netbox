@@ -37,8 +37,12 @@ type ConsolePort struct {
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -46,6 +50,10 @@ type ConsolePort struct {
 
 	// connection status
 	ConnectionStatus *ConsolePortConnectionStatus `json:"connection_status,omitempty"`
+
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
 
 	// device
 	// Required: true
@@ -74,6 +82,10 @@ func (m *ConsolePort) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateConnectionStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateDescription(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -126,6 +138,19 @@ func (m *ConsolePort) validateConnectionStatus(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *ConsolePort) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
 	}
 
 	return nil

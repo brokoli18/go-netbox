@@ -38,6 +38,10 @@ type DeviceRole struct {
 	// Pattern: ^[0-9a-f]{6}$
 	Color *string `json:"color"`
 
+	// Device count
+	// Read Only: true
+	DeviceCount int64 `json:"device_count,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
@@ -54,6 +58,10 @@ type DeviceRole struct {
 	// Min Length: 1
 	// Pattern: ^[-a-zA-Z0-9_]+$
 	Slug *string `json:"slug"`
+
+	// Virtualmachine count
+	// Read Only: true
+	VirtualmachineCount int64 `json:"virtualmachine_count,omitempty"`
 
 	// VM Role
 	//

@@ -30,9 +30,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WritableVirtualMachine writable virtual machine
-// swagger:model WritableVirtualMachine
-type WritableVirtualMachine struct {
+// WritableVirtualMachineWithConfigContext writable virtual machine with config context
+// swagger:model WritableVirtualMachineWithConfigContext
+type WritableVirtualMachineWithConfigContext struct {
 
 	// Cluster
 	// Required: true
@@ -40,6 +40,10 @@ type WritableVirtualMachine struct {
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
+
+	// Config context
+	// Read Only: true
+	ConfigContext map[string]string `json:"config_context,omitempty"`
 
 	// Created
 	// Read Only: true
@@ -113,8 +117,8 @@ type WritableVirtualMachine struct {
 	Vcpus *int64 `json:"vcpus,omitempty"`
 }
 
-// Validate validates this writable virtual machine
-func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
+// Validate validates this writable virtual machine with config context
+func (m *WritableVirtualMachineWithConfigContext) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCluster(formats); err != nil {
@@ -159,7 +163,7 @@ func (m *WritableVirtualMachine) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateCluster(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateCluster(formats strfmt.Registry) error {
 
 	if err := validate.Required("cluster", "body", m.Cluster); err != nil {
 		return err
@@ -168,7 +172,7 @@ func (m *WritableVirtualMachine) validateCluster(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateCreated(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateCreated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Created) { // not required
 		return nil
@@ -181,7 +185,7 @@ func (m *WritableVirtualMachine) validateCreated(formats strfmt.Registry) error 
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateDisk(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateDisk(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Disk) { // not required
 		return nil
@@ -198,7 +202,7 @@ func (m *WritableVirtualMachine) validateDisk(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateLastUpdated(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateLastUpdated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.LastUpdated) { // not required
 		return nil
@@ -211,7 +215,7 @@ func (m *WritableVirtualMachine) validateLastUpdated(formats strfmt.Registry) er
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateMemory(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateMemory(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Memory) { // not required
 		return nil
@@ -228,7 +232,7 @@ func (m *WritableVirtualMachine) validateMemory(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateName(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateName(formats strfmt.Registry) error {
 
 	if err := validate.Required("name", "body", m.Name); err != nil {
 		return err
@@ -245,7 +249,7 @@ func (m *WritableVirtualMachine) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableVirtualMachineTypeStatusPropEnum []interface{}
+var writableVirtualMachineWithConfigContextTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []int64
@@ -253,19 +257,19 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		writableVirtualMachineTypeStatusPropEnum = append(writableVirtualMachineTypeStatusPropEnum, v)
+		writableVirtualMachineWithConfigContextTypeStatusPropEnum = append(writableVirtualMachineWithConfigContextTypeStatusPropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableVirtualMachine) validateStatusEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableVirtualMachineTypeStatusPropEnum); err != nil {
+func (m *WritableVirtualMachineWithConfigContext) validateStatusEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableVirtualMachineWithConfigContextTypeStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateStatus(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateStatus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Status) { // not required
 		return nil
@@ -279,7 +283,7 @@ func (m *WritableVirtualMachine) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateTags(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateTags(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Tags) { // not required
 		return nil
@@ -296,7 +300,7 @@ func (m *WritableVirtualMachine) validateTags(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableVirtualMachine) validateVcpus(formats strfmt.Registry) error {
+func (m *WritableVirtualMachineWithConfigContext) validateVcpus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Vcpus) { // not required
 		return nil
@@ -314,7 +318,7 @@ func (m *WritableVirtualMachine) validateVcpus(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *WritableVirtualMachine) MarshalBinary() ([]byte, error) {
+func (m *WritableVirtualMachineWithConfigContext) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -322,8 +326,8 @@ func (m *WritableVirtualMachine) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *WritableVirtualMachine) UnmarshalBinary(b []byte) error {
-	var res WritableVirtualMachine
+func (m *WritableVirtualMachineWithConfigContext) UnmarshalBinary(b []byte) error {
+	var res WritableVirtualMachineWithConfigContext
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

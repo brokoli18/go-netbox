@@ -76,6 +76,8 @@ for the ipam vlan groups list operation typically these are written to a http.Re
 */
 type IpamVlanGroupsListParams struct {
 
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -133,6 +135,17 @@ func (o *IpamVlanGroupsListParams) WithHTTPClient(client *http.Client) *IpamVlan
 // SetHTTPClient adds the HTTPClient to the ipam vlan groups list params
 func (o *IpamVlanGroupsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithID adds the id to the ipam vlan groups list params
+func (o *IpamVlanGroupsListParams) WithID(id *string) *IpamVlanGroupsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the ipam vlan groups list params
+func (o *IpamVlanGroupsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the ipam vlan groups list params
@@ -219,6 +232,22 @@ func (o *IpamVlanGroupsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

@@ -113,10 +113,14 @@ type IpamVlansListParams struct {
 	Tag *string
 	/*Tenant*/
 	Tenant *string
+	/*TenantGroup*/
+	TenantGroup *string
+	/*TenantGroupID*/
+	TenantGroupID *string
 	/*TenantID*/
 	TenantID *string
 	/*Vid*/
-	Vid *float64
+	Vid *string
 
 	timeout    time.Duration
 	Context    context.Context
@@ -310,6 +314,28 @@ func (o *IpamVlansListParams) SetTenant(tenant *string) {
 	o.Tenant = tenant
 }
 
+// WithTenantGroup adds the tenantGroup to the ipam vlans list params
+func (o *IpamVlansListParams) WithTenantGroup(tenantGroup *string) *IpamVlansListParams {
+	o.SetTenantGroup(tenantGroup)
+	return o
+}
+
+// SetTenantGroup adds the tenantGroup to the ipam vlans list params
+func (o *IpamVlansListParams) SetTenantGroup(tenantGroup *string) {
+	o.TenantGroup = tenantGroup
+}
+
+// WithTenantGroupID adds the tenantGroupID to the ipam vlans list params
+func (o *IpamVlansListParams) WithTenantGroupID(tenantGroupID *string) *IpamVlansListParams {
+	o.SetTenantGroupID(tenantGroupID)
+	return o
+}
+
+// SetTenantGroupID adds the tenantGroupId to the ipam vlans list params
+func (o *IpamVlansListParams) SetTenantGroupID(tenantGroupID *string) {
+	o.TenantGroupID = tenantGroupID
+}
+
 // WithTenantID adds the tenantID to the ipam vlans list params
 func (o *IpamVlansListParams) WithTenantID(tenantID *string) *IpamVlansListParams {
 	o.SetTenantID(tenantID)
@@ -322,13 +348,13 @@ func (o *IpamVlansListParams) SetTenantID(tenantID *string) {
 }
 
 // WithVid adds the vid to the ipam vlans list params
-func (o *IpamVlansListParams) WithVid(vid *float64) *IpamVlansListParams {
+func (o *IpamVlansListParams) WithVid(vid *string) *IpamVlansListParams {
 	o.SetVid(vid)
 	return o
 }
 
 // SetVid adds the vid to the ipam vlans list params
-func (o *IpamVlansListParams) SetVid(vid *float64) {
+func (o *IpamVlansListParams) SetVid(vid *string) {
 	o.Vid = vid
 }
 
@@ -564,6 +590,38 @@ func (o *IpamVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 
 	}
 
+	if o.TenantGroup != nil {
+
+		// query param tenant_group
+		var qrTenantGroup string
+		if o.TenantGroup != nil {
+			qrTenantGroup = *o.TenantGroup
+		}
+		qTenantGroup := qrTenantGroup
+		if qTenantGroup != "" {
+			if err := r.SetQueryParam("tenant_group", qTenantGroup); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroupID != nil {
+
+		// query param tenant_group_id
+		var qrTenantGroupID string
+		if o.TenantGroupID != nil {
+			qrTenantGroupID = *o.TenantGroupID
+		}
+		qTenantGroupID := qrTenantGroupID
+		if qTenantGroupID != "" {
+			if err := r.SetQueryParam("tenant_group_id", qTenantGroupID); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.TenantID != nil {
 
 		// query param tenant_id
@@ -583,11 +641,11 @@ func (o *IpamVlansListParams) WriteToRequest(r runtime.ClientRequest, reg strfmt
 	if o.Vid != nil {
 
 		// query param vid
-		var qrVid float64
+		var qrVid string
 		if o.Vid != nil {
 			qrVid = *o.Vid
 		}
-		qVid := swag.FormatFloat64(qrVid)
+		qVid := qrVid
 		if qVid != "" {
 			if err := r.SetQueryParam("vid", qVid); err != nil {
 				return err

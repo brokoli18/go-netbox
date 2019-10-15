@@ -27,7 +27,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NestedDevice Master
+// NestedDevice Parent device
 // swagger:model NestedDevice
 type NestedDevice struct {
 

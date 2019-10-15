@@ -76,6 +76,8 @@ for the dcim rack groups list operation typically these are written to a http.Re
 */
 type DcimRackGroupsListParams struct {
 
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -133,6 +135,17 @@ func (o *DcimRackGroupsListParams) WithHTTPClient(client *http.Client) *DcimRack
 // SetHTTPClient adds the HTTPClient to the dcim rack groups list params
 func (o *DcimRackGroupsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithID adds the id to the dcim rack groups list params
+func (o *DcimRackGroupsListParams) WithID(id *string) *DcimRackGroupsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim rack groups list params
+func (o *DcimRackGroupsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim rack groups list params
@@ -219,6 +232,22 @@ func (o *DcimRackGroupsListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		return err
 	}
 	var res []error
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

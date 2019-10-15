@@ -38,8 +38,12 @@ type WritableDeviceInterface struct {
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -65,8 +69,8 @@ type WritableDeviceInterface struct {
 	Enabled bool `json:"enabled,omitempty"`
 
 	// Form factor
-	// Enum: [0 200 800 1000 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1420 1500 1510 1650 1520 1550 1600 1700 1750 2600 2610 2620 2630 2640 2810 2820 2830 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
-	FormFactor int64 `json:"form_factor,omitempty"`
+	// Read Only: true
+	FormFactor string `json:"form_factor,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -105,6 +109,10 @@ type WritableDeviceInterface struct {
 	// tags
 	Tags []string `json:"tags"`
 
+	// Type
+	// Enum: [0 200 800 1000 1120 1130 1150 1170 1050 1100 1200 1300 1310 1320 1350 1400 1420 1500 1510 1650 1520 1550 1600 1700 1750 2600 2610 2620 2630 2640 2810 2820 2830 6100 6200 6300 6400 6500 6600 6700 3010 3020 3040 3080 3160 3320 3400 7010 7020 7030 7040 7050 7060 7070 7080 7090 4000 4010 4040 4050 5000 5050 5100 5150 5200 5300 5310 5320 5330 32767]
+	Type int64 `json:"type,omitempty"`
+
 	// Untagged VLAN
 	UntaggedVlan *int64 `json:"untagged_vlan,omitempty"`
 }
@@ -129,10 +137,6 @@ func (m *WritableDeviceInterface) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateFormFactor(formats); err != nil {
-		res = append(res, err)
-	}
-
 	if err := m.validateMode(formats); err != nil {
 		res = append(res, err)
 	}
@@ -150,6 +154,10 @@ func (m *WritableDeviceInterface) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateType(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -227,40 +235,6 @@ func (m *WritableDeviceInterface) validateDescription(formats strfmt.Registry) e
 func (m *WritableDeviceInterface) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-var writableDeviceInterfaceTypeFormFactorPropEnum []interface{}
-
-func init() {
-	var res []int64
-	if err := json.Unmarshal([]byte(`[0,200,800,1000,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1420,1500,1510,1650,1520,1550,1600,1700,1750,2600,2610,2620,2630,2640,2810,2820,2830,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
-		panic(err)
-	}
-	for _, v := range res {
-		writableDeviceInterfaceTypeFormFactorPropEnum = append(writableDeviceInterfaceTypeFormFactorPropEnum, v)
-	}
-}
-
-// prop value enum
-func (m *WritableDeviceInterface) validateFormFactorEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableDeviceInterfaceTypeFormFactorPropEnum); err != nil {
-		return err
-	}
-	return nil
-}
-
-func (m *WritableDeviceInterface) validateFormFactor(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.FormFactor) { // not required
-		return nil
-	}
-
-	// value enum
-	if err := m.validateFormFactorEnum("form_factor", "body", m.FormFactor); err != nil {
 		return err
 	}
 
@@ -360,6 +334,40 @@ func (m *WritableDeviceInterface) validateTags(formats strfmt.Registry) error {
 			return err
 		}
 
+	}
+
+	return nil
+}
+
+var writableDeviceInterfaceTypeTypePropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[0,200,800,1000,1120,1130,1150,1170,1050,1100,1200,1300,1310,1320,1350,1400,1420,1500,1510,1650,1520,1550,1600,1700,1750,2600,2610,2620,2630,2640,2810,2820,2830,6100,6200,6300,6400,6500,6600,6700,3010,3020,3040,3080,3160,3320,3400,7010,7020,7030,7040,7050,7060,7070,7080,7090,4000,4010,4040,4050,5000,5050,5100,5150,5200,5300,5310,5320,5330,32767]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writableDeviceInterfaceTypeTypePropEnum = append(writableDeviceInterfaceTypeTypePropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritableDeviceInterface) validateTypeEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceInterfaceTypeTypePropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WritableDeviceInterface) validateType(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Type) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateTypeEnum("type", "body", m.Type); err != nil {
+		return err
 	}
 
 	return nil

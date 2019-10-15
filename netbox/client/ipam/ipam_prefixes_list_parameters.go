@@ -117,6 +117,10 @@ type IpamPrefixesListParams struct {
 	Tag *string
 	/*Tenant*/
 	Tenant *string
+	/*TenantGroup*/
+	TenantGroup *string
+	/*TenantGroupID*/
+	TenantGroupID *string
 	/*TenantID*/
 	TenantID *string
 	/*VlanID*/
@@ -344,6 +348,28 @@ func (o *IpamPrefixesListParams) WithTenant(tenant *string) *IpamPrefixesListPar
 // SetTenant adds the tenant to the ipam prefixes list params
 func (o *IpamPrefixesListParams) SetTenant(tenant *string) {
 	o.Tenant = tenant
+}
+
+// WithTenantGroup adds the tenantGroup to the ipam prefixes list params
+func (o *IpamPrefixesListParams) WithTenantGroup(tenantGroup *string) *IpamPrefixesListParams {
+	o.SetTenantGroup(tenantGroup)
+	return o
+}
+
+// SetTenantGroup adds the tenantGroup to the ipam prefixes list params
+func (o *IpamPrefixesListParams) SetTenantGroup(tenantGroup *string) {
+	o.TenantGroup = tenantGroup
+}
+
+// WithTenantGroupID adds the tenantGroupID to the ipam prefixes list params
+func (o *IpamPrefixesListParams) WithTenantGroupID(tenantGroupID *string) *IpamPrefixesListParams {
+	o.SetTenantGroupID(tenantGroupID)
+	return o
+}
+
+// SetTenantGroupID adds the tenantGroupId to the ipam prefixes list params
+func (o *IpamPrefixesListParams) SetTenantGroupID(tenantGroupID *string) {
+	o.TenantGroupID = tenantGroupID
 }
 
 // WithTenantID adds the tenantID to the ipam prefixes list params
@@ -681,6 +707,38 @@ func (o *IpamPrefixesListParams) WriteToRequest(r runtime.ClientRequest, reg str
 		qTenant := qrTenant
 		if qTenant != "" {
 			if err := r.SetQueryParam("tenant", qTenant); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroup != nil {
+
+		// query param tenant_group
+		var qrTenantGroup string
+		if o.TenantGroup != nil {
+			qrTenantGroup = *o.TenantGroup
+		}
+		qTenantGroup := qrTenantGroup
+		if qTenantGroup != "" {
+			if err := r.SetQueryParam("tenant_group", qTenantGroup); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroupID != nil {
+
+		// query param tenant_group_id
+		var qrTenantGroupID string
+		if o.TenantGroupID != nil {
+			qrTenantGroupID = *o.TenantGroupID
+		}
+		qTenantGroupID := qrTenantGroupID
+		if qTenantGroupID != "" {
+			if err := r.SetQueryParam("tenant_group_id", qTenantGroupID); err != nil {
 				return err
 			}
 		}

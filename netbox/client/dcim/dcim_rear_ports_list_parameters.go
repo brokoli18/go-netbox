@@ -78,10 +78,14 @@ type DcimRearPortsListParams struct {
 
 	/*Cabled*/
 	Cabled *string
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -94,6 +98,8 @@ type DcimRearPortsListParams struct {
 
 	*/
 	Offset *int64
+	/*Positions*/
+	Positions *string
 	/*Q*/
 	Q *string
 	/*Tag*/
@@ -150,6 +156,17 @@ func (o *DcimRearPortsListParams) SetCabled(cabled *string) {
 	o.Cabled = cabled
 }
 
+// WithDescription adds the description to the dcim rear ports list params
+func (o *DcimRearPortsListParams) WithDescription(description *string) *DcimRearPortsListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim rear ports list params
+func (o *DcimRearPortsListParams) SetDescription(description *string) {
+	o.Description = description
+}
+
 // WithDevice adds the device to the dcim rear ports list params
 func (o *DcimRearPortsListParams) WithDevice(device *string) *DcimRearPortsListParams {
 	o.SetDevice(device)
@@ -170,6 +187,17 @@ func (o *DcimRearPortsListParams) WithDeviceID(deviceID *string) *DcimRearPortsL
 // SetDeviceID adds the deviceId to the dcim rear ports list params
 func (o *DcimRearPortsListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
+}
+
+// WithID adds the id to the dcim rear ports list params
+func (o *DcimRearPortsListParams) WithID(id *string) *DcimRearPortsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim rear ports list params
+func (o *DcimRearPortsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim rear ports list params
@@ -203,6 +231,17 @@ func (o *DcimRearPortsListParams) WithOffset(offset *int64) *DcimRearPortsListPa
 // SetOffset adds the offset to the dcim rear ports list params
 func (o *DcimRearPortsListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithPositions adds the positions to the dcim rear ports list params
+func (o *DcimRearPortsListParams) WithPositions(positions *string) *DcimRearPortsListParams {
+	o.SetPositions(positions)
+	return o
+}
+
+// SetPositions adds the positions to the dcim rear ports list params
+func (o *DcimRearPortsListParams) SetPositions(positions *string) {
+	o.Positions = positions
 }
 
 // WithQ adds the q to the dcim rear ports list params
@@ -262,6 +301,22 @@ func (o *DcimRearPortsListParams) WriteToRequest(r runtime.ClientRequest, reg st
 
 	}
 
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Device != nil {
 
 		// query param device
@@ -288,6 +343,22 @@ func (o *DcimRearPortsListParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qDeviceID := qrDeviceID
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}
@@ -336,6 +407,22 @@ func (o *DcimRearPortsListParams) WriteToRequest(r runtime.ClientRequest, reg st
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Positions != nil {
+
+		// query param positions
+		var qrPositions string
+		if o.Positions != nil {
+			qrPositions = *o.Positions
+		}
+		qPositions := qrPositions
+		if qPositions != "" {
+			if err := r.SetQueryParam("positions", qPositions); err != nil {
 				return err
 			}
 		}

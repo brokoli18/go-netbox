@@ -76,6 +76,8 @@ for the tenancy tenant groups list operation typically these are written to a ht
 */
 type TenancyTenantGroupsListParams struct {
 
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -129,6 +131,17 @@ func (o *TenancyTenantGroupsListParams) WithHTTPClient(client *http.Client) *Ten
 // SetHTTPClient adds the HTTPClient to the tenancy tenant groups list params
 func (o *TenancyTenantGroupsListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithID adds the id to the tenancy tenant groups list params
+func (o *TenancyTenantGroupsListParams) WithID(id *string) *TenancyTenantGroupsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the tenancy tenant groups list params
+func (o *TenancyTenantGroupsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the tenancy tenant groups list params
@@ -193,6 +206,22 @@ func (o *TenancyTenantGroupsListParams) WriteToRequest(r runtime.ClientRequest, 
 		return err
 	}
 	var res []error
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

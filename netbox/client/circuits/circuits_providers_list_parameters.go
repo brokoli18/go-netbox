@@ -79,7 +79,7 @@ type CircuitsProvidersListParams struct {
 	/*Account*/
 	Account *string
 	/*Asn*/
-	Asn *float64
+	Asn *string
 	/*IDIn
 	  Multiple values may be separated by commas.
 
@@ -158,13 +158,13 @@ func (o *CircuitsProvidersListParams) SetAccount(account *string) {
 }
 
 // WithAsn adds the asn to the circuits providers list params
-func (o *CircuitsProvidersListParams) WithAsn(asn *float64) *CircuitsProvidersListParams {
+func (o *CircuitsProvidersListParams) WithAsn(asn *string) *CircuitsProvidersListParams {
 	o.SetAsn(asn)
 	return o
 }
 
 // SetAsn adds the asn to the circuits providers list params
-func (o *CircuitsProvidersListParams) SetAsn(asn *float64) {
+func (o *CircuitsProvidersListParams) SetAsn(asn *string) {
 	o.Asn = asn
 }
 
@@ -294,11 +294,11 @@ func (o *CircuitsProvidersListParams) WriteToRequest(r runtime.ClientRequest, re
 	if o.Asn != nil {
 
 		// query param asn
-		var qrAsn float64
+		var qrAsn string
 		if o.Asn != nil {
 			qrAsn = *o.Asn
 		}
-		qAsn := swag.FormatFloat64(qrAsn)
+		qAsn := qrAsn
 		if qAsn != "" {
 			if err := r.SetQueryParam("asn", qAsn); err != nil {
 				return err

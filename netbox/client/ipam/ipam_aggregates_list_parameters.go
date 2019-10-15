@@ -95,6 +95,8 @@ type IpamAggregatesListParams struct {
 
 	*/
 	Offset *int64
+	/*Prefix*/
+	Prefix *string
 	/*Q*/
 	Q *string
 	/*Rir*/
@@ -195,6 +197,17 @@ func (o *IpamAggregatesListParams) WithOffset(offset *int64) *IpamAggregatesList
 // SetOffset adds the offset to the ipam aggregates list params
 func (o *IpamAggregatesListParams) SetOffset(offset *int64) {
 	o.Offset = offset
+}
+
+// WithPrefix adds the prefix to the ipam aggregates list params
+func (o *IpamAggregatesListParams) WithPrefix(prefix *string) *IpamAggregatesListParams {
+	o.SetPrefix(prefix)
+	return o
+}
+
+// SetPrefix adds the prefix to the ipam aggregates list params
+func (o *IpamAggregatesListParams) SetPrefix(prefix *string) {
+	o.Prefix = prefix
 }
 
 // WithQ adds the q to the ipam aggregates list params
@@ -323,6 +336,22 @@ func (o *IpamAggregatesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qOffset := swag.FormatInt64(qrOffset)
 		if qOffset != "" {
 			if err := r.SetQueryParam("offset", qOffset); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Prefix != nil {
+
+		// query param prefix
+		var qrPrefix string
+		if o.Prefix != nil {
+			qrPrefix = *o.Prefix
+		}
+		qPrefix := qrPrefix
+		if qPrefix != "" {
+			if err := r.SetQueryParam("prefix", qPrefix); err != nil {
 				return err
 			}
 		}

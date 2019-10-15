@@ -80,10 +80,16 @@ type DcimPowerOutletsListParams struct {
 	Cabled *string
 	/*ConnectionStatus*/
 	ConnectionStatus *string
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*FeedLeg*/
+	FeedLeg *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -161,6 +167,17 @@ func (o *DcimPowerOutletsListParams) SetConnectionStatus(connectionStatus *strin
 	o.ConnectionStatus = connectionStatus
 }
 
+// WithDescription adds the description to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) WithDescription(description *string) *DcimPowerOutletsListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) SetDescription(description *string) {
+	o.Description = description
+}
+
 // WithDevice adds the device to the dcim power outlets list params
 func (o *DcimPowerOutletsListParams) WithDevice(device *string) *DcimPowerOutletsListParams {
 	o.SetDevice(device)
@@ -181,6 +198,28 @@ func (o *DcimPowerOutletsListParams) WithDeviceID(deviceID *string) *DcimPowerOu
 // SetDeviceID adds the deviceId to the dcim power outlets list params
 func (o *DcimPowerOutletsListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
+}
+
+// WithFeedLeg adds the feedLeg to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) WithFeedLeg(feedLeg *string) *DcimPowerOutletsListParams {
+	o.SetFeedLeg(feedLeg)
+	return o
+}
+
+// SetFeedLeg adds the feedLeg to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) SetFeedLeg(feedLeg *string) {
+	o.FeedLeg = feedLeg
+}
+
+// WithID adds the id to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) WithID(id *string) *DcimPowerOutletsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim power outlets list params
+func (o *DcimPowerOutletsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim power outlets list params
@@ -278,6 +317,22 @@ func (o *DcimPowerOutletsListParams) WriteToRequest(r runtime.ClientRequest, reg
 
 	}
 
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Device != nil {
 
 		// query param device
@@ -304,6 +359,38 @@ func (o *DcimPowerOutletsListParams) WriteToRequest(r runtime.ClientRequest, reg
 		qDeviceID := qrDeviceID
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.FeedLeg != nil {
+
+		// query param feed_leg
+		var qrFeedLeg string
+		if o.FeedLeg != nil {
+			qrFeedLeg = *o.FeedLeg
+		}
+		qFeedLeg := qrFeedLeg
+		if qFeedLeg != "" {
+			if err := r.SetQueryParam("feed_leg", qFeedLeg); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

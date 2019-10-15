@@ -84,6 +84,8 @@ type DcimInventoryItemsListParams struct {
 	DeviceID *string
 	/*Discovered*/
 	Discovered *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -191,6 +193,17 @@ func (o *DcimInventoryItemsListParams) WithDiscovered(discovered *string) *DcimI
 // SetDiscovered adds the discovered to the dcim inventory items list params
 func (o *DcimInventoryItemsListParams) SetDiscovered(discovered *string) {
 	o.Discovered = discovered
+}
+
+// WithID adds the id to the dcim inventory items list params
+func (o *DcimInventoryItemsListParams) WithID(id *string) *DcimInventoryItemsListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim inventory items list params
+func (o *DcimInventoryItemsListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim inventory items list params
@@ -369,6 +382,22 @@ func (o *DcimInventoryItemsListParams) WriteToRequest(r runtime.ClientRequest, r
 		qDiscovered := qrDiscovered
 		if qDiscovered != "" {
 			if err := r.SetQueryParam("discovered", qDiscovered); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

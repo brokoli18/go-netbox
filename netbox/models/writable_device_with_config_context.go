@@ -30,9 +30,9 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// WritableDevice writable device
-// swagger:model WritableDevice
-type WritableDevice struct {
+// WritableDeviceWithConfigContext writable device with config context
+// swagger:model WritableDeviceWithConfigContext
+type WritableDeviceWithConfigContext struct {
 
 	// Asset tag
 	//
@@ -45,6 +45,10 @@ type WritableDevice struct {
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
+
+	// Config context
+	// Read Only: true
+	ConfigContext map[string]string `json:"config_context,omitempty"`
 
 	// Created
 	// Read Only: true
@@ -86,9 +90,8 @@ type WritableDevice struct {
 	// Max Length: 64
 	Name *string `json:"name,omitempty"`
 
-	// Parent device
-	// Read Only: true
-	ParentDevice string `json:"parent_device,omitempty"`
+	// parent device
+	ParentDevice *NestedDevice `json:"parent_device,omitempty"`
 
 	// Platform
 	Platform *int64 `json:"platform,omitempty"`
@@ -122,7 +125,7 @@ type WritableDevice struct {
 	Site *int64 `json:"site"`
 
 	// Status
-	// Enum: [1 0 2 3 4 5]
+	// Enum: [1 0 2 3 4 5 6]
 	Status int64 `json:"status,omitempty"`
 
 	// tags
@@ -145,8 +148,8 @@ type WritableDevice struct {
 	VirtualChassis *int64 `json:"virtual_chassis,omitempty"`
 }
 
-// Validate validates this writable device
-func (m *WritableDevice) Validate(formats strfmt.Registry) error {
+// Validate validates this writable device with config context
+func (m *WritableDeviceWithConfigContext) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateAssetTag(formats); err != nil {
@@ -174,6 +177,10 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateName(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateParentDevice(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -211,7 +218,7 @@ func (m *WritableDevice) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateAssetTag(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateAssetTag(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.AssetTag) { // not required
 		return nil
@@ -224,7 +231,7 @@ func (m *WritableDevice) validateAssetTag(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateCreated(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateCreated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Created) { // not required
 		return nil
@@ -237,7 +244,7 @@ func (m *WritableDevice) validateCreated(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateDeviceRole(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateDeviceRole(formats strfmt.Registry) error {
 
 	if err := validate.Required("device_role", "body", m.DeviceRole); err != nil {
 		return err
@@ -246,7 +253,7 @@ func (m *WritableDevice) validateDeviceRole(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateDeviceType(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateDeviceType(formats strfmt.Registry) error {
 
 	if err := validate.Required("device_type", "body", m.DeviceType); err != nil {
 		return err
@@ -255,7 +262,7 @@ func (m *WritableDevice) validateDeviceType(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableDeviceTypeFacePropEnum []interface{}
+var writableDeviceWithConfigContextTypeFacePropEnum []interface{}
 
 func init() {
 	var res []int64
@@ -263,19 +270,19 @@ func init() {
 		panic(err)
 	}
 	for _, v := range res {
-		writableDeviceTypeFacePropEnum = append(writableDeviceTypeFacePropEnum, v)
+		writableDeviceWithConfigContextTypeFacePropEnum = append(writableDeviceWithConfigContextTypeFacePropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableDevice) validateFaceEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableDeviceTypeFacePropEnum); err != nil {
+func (m *WritableDeviceWithConfigContext) validateFaceEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceWithConfigContextTypeFacePropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableDevice) validateFace(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateFace(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Face) { // not required
 		return nil
@@ -289,7 +296,7 @@ func (m *WritableDevice) validateFace(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateLastUpdated(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateLastUpdated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.LastUpdated) { // not required
 		return nil
@@ -302,7 +309,7 @@ func (m *WritableDevice) validateLastUpdated(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateName(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateName(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Name) { // not required
 		return nil
@@ -315,7 +322,25 @@ func (m *WritableDevice) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validatePosition(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateParentDevice(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.ParentDevice) { // not required
+		return nil
+	}
+
+	if m.ParentDevice != nil {
+		if err := m.ParentDevice.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("parent_device")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *WritableDeviceWithConfigContext) validatePosition(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Position) { // not required
 		return nil
@@ -332,7 +357,7 @@ func (m *WritableDevice) validatePosition(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateSerial(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateSerial(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Serial) { // not required
 		return nil
@@ -345,7 +370,7 @@ func (m *WritableDevice) validateSerial(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateSite(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateSite(formats strfmt.Registry) error {
 
 	if err := validate.Required("site", "body", m.Site); err != nil {
 		return err
@@ -354,27 +379,27 @@ func (m *WritableDevice) validateSite(formats strfmt.Registry) error {
 	return nil
 }
 
-var writableDeviceTypeStatusPropEnum []interface{}
+var writableDeviceWithConfigContextTypeStatusPropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[1,0,2,3,4,5]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[1,0,2,3,4,5,6]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {
-		writableDeviceTypeStatusPropEnum = append(writableDeviceTypeStatusPropEnum, v)
+		writableDeviceWithConfigContextTypeStatusPropEnum = append(writableDeviceWithConfigContextTypeStatusPropEnum, v)
 	}
 }
 
 // prop value enum
-func (m *WritableDevice) validateStatusEnum(path, location string, value int64) error {
-	if err := validate.Enum(path, location, value, writableDeviceTypeStatusPropEnum); err != nil {
+func (m *WritableDeviceWithConfigContext) validateStatusEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writableDeviceWithConfigContextTypeStatusPropEnum); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *WritableDevice) validateStatus(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateStatus(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Status) { // not required
 		return nil
@@ -388,7 +413,7 @@ func (m *WritableDevice) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateTags(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateTags(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Tags) { // not required
 		return nil
@@ -405,7 +430,7 @@ func (m *WritableDevice) validateTags(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateVcPosition(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateVcPosition(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.VcPosition) { // not required
 		return nil
@@ -422,7 +447,7 @@ func (m *WritableDevice) validateVcPosition(formats strfmt.Registry) error {
 	return nil
 }
 
-func (m *WritableDevice) validateVcPriority(formats strfmt.Registry) error {
+func (m *WritableDeviceWithConfigContext) validateVcPriority(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.VcPriority) { // not required
 		return nil
@@ -440,7 +465,7 @@ func (m *WritableDevice) validateVcPriority(formats strfmt.Registry) error {
 }
 
 // MarshalBinary interface implementation
-func (m *WritableDevice) MarshalBinary() ([]byte, error) {
+func (m *WritableDeviceWithConfigContext) MarshalBinary() ([]byte, error) {
 	if m == nil {
 		return nil, nil
 	}
@@ -448,8 +473,8 @@ func (m *WritableDevice) MarshalBinary() ([]byte, error) {
 }
 
 // UnmarshalBinary interface implementation
-func (m *WritableDevice) UnmarshalBinary(b []byte) error {
-	var res WritableDevice
+func (m *WritableDeviceWithConfigContext) UnmarshalBinary(b []byte) error {
+	var res WritableDeviceWithConfigContext
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

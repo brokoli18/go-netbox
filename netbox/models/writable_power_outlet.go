@@ -38,8 +38,12 @@ type WritablePowerOutlet struct {
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -49,9 +53,19 @@ type WritablePowerOutlet struct {
 	// Enum: [false true]
 	ConnectionStatus bool `json:"connection_status,omitempty"`
 
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
+
 	// Device
 	// Required: true
 	Device *int64 `json:"device"`
+
+	// Feed leg
+	//
+	// Phase (for three-phase feeds)
+	// Enum: [1 2 3]
+	FeedLeg *int64 `json:"feed_leg,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -62,6 +76,9 @@ type WritablePowerOutlet struct {
 	// Max Length: 50
 	// Min Length: 1
 	Name *string `json:"name"`
+
+	// Power port
+	PowerPort *int64 `json:"power_port,omitempty"`
 
 	// tags
 	Tags []string `json:"tags"`
@@ -79,7 +96,15 @@ func (m *WritablePowerOutlet) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDevice(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateFeedLeg(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,9 +174,56 @@ func (m *WritablePowerOutlet) validateConnectionStatus(formats strfmt.Registry) 
 	return nil
 }
 
+func (m *WritablePowerOutlet) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *WritablePowerOutlet) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+var writablePowerOutletTypeFeedLegPropEnum []interface{}
+
+func init() {
+	var res []int64
+	if err := json.Unmarshal([]byte(`[1,2,3]`), &res); err != nil {
+		panic(err)
+	}
+	for _, v := range res {
+		writablePowerOutletTypeFeedLegPropEnum = append(writablePowerOutletTypeFeedLegPropEnum, v)
+	}
+}
+
+// prop value enum
+func (m *WritablePowerOutlet) validateFeedLegEnum(path, location string, value int64) error {
+	if err := validate.Enum(path, location, value, writablePowerOutletTypeFeedLegPropEnum); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *WritablePowerOutlet) validateFeedLeg(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.FeedLeg) { // not required
+		return nil
+	}
+
+	// value enum
+	if err := m.validateFeedLegEnum("feed_leg", "body", *m.FeedLeg); err != nil {
 		return err
 	}
 

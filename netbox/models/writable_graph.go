@@ -56,7 +56,7 @@ type WritableGraph struct {
 
 	// Type
 	// Required: true
-	// Enum: [100 200 300]
+	// Enum: [100 150 200 300]
 	Type *int64 `json:"type"`
 
 	// Weight
@@ -150,7 +150,7 @@ var writableGraphTypeTypePropEnum []interface{}
 
 func init() {
 	var res []int64
-	if err := json.Unmarshal([]byte(`[100,200,300]`), &res); err != nil {
+	if err := json.Unmarshal([]byte(`[100,150,200,300]`), &res); err != nil {
 		panic(err)
 	}
 	for _, v := range res {

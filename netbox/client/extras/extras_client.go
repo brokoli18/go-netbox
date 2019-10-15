@@ -111,6 +111,76 @@ func (a *Client) ExtrasChoicesRead(params *ExtrasChoicesReadParams, authInfo run
 }
 
 /*
+ExtrasCustomFieldChoicesList extras custom field choices list API
+*/
+func (a *Client) ExtrasCustomFieldChoicesList(params *ExtrasCustomFieldChoicesListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasCustomFieldChoicesListOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExtrasCustomFieldChoicesListParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "extras__custom_field_choices_list",
+		Method:             "GET",
+		PathPattern:        "/extras/_custom_field_choices/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ExtrasCustomFieldChoicesListReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExtrasCustomFieldChoicesListOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for extras__custom_field_choices_list: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
+ExtrasCustomFieldChoicesRead extras custom field choices read API
+*/
+func (a *Client) ExtrasCustomFieldChoicesRead(params *ExtrasCustomFieldChoicesReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasCustomFieldChoicesReadOK, error) {
+	// TODO: Validate the params before sending
+	if params == nil {
+		params = NewExtrasCustomFieldChoicesReadParams()
+	}
+
+	result, err := a.transport.Submit(&runtime.ClientOperation{
+		ID:                 "extras__custom_field_choices_read",
+		Method:             "GET",
+		PathPattern:        "/extras/_custom_field_choices/{id}/",
+		ProducesMediaTypes: []string{"application/json"},
+		ConsumesMediaTypes: []string{"application/json"},
+		Schemes:            []string{"http"},
+		Params:             params,
+		Reader:             &ExtrasCustomFieldChoicesReadReader{formats: a.formats},
+		AuthInfo:           authInfo,
+		Context:            params.Context,
+		Client:             params.HTTPClient,
+	})
+	if err != nil {
+		return nil, err
+	}
+	success, ok := result.(*ExtrasCustomFieldChoicesReadOK)
+	if ok {
+		return success, nil
+	}
+	// unexpected success response
+	// safeguard: normally, absent a default response, unknown success responses return an error above: so this is a codegen issue
+	msg := fmt.Sprintf("unexpected success response for extras__custom_field_choices_read: API contract not enforced by server. Client expected to get an error, but got: %T", result)
+	panic(msg)
+}
+
+/*
 ExtrasConfigContextsCreate extras config contexts create API
 */
 func (a *Client) ExtrasConfigContextsCreate(params *ExtrasConfigContextsCreateParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasConfigContextsCreateCreated, error) {
@@ -181,7 +251,7 @@ func (a *Client) ExtrasConfigContextsDelete(params *ExtrasConfigContextsDeletePa
 }
 
 /*
-ExtrasConfigContextsList extras config contexts list API
+ExtrasConfigContextsList Call to super to allow for caching
 */
 func (a *Client) ExtrasConfigContextsList(params *ExtrasConfigContextsListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasConfigContextsListOK, error) {
 	// TODO: Validate the params before sending
@@ -251,7 +321,7 @@ func (a *Client) ExtrasConfigContextsPartialUpdate(params *ExtrasConfigContextsP
 }
 
 /*
-ExtrasConfigContextsRead extras config contexts read API
+ExtrasConfigContextsRead Call to super to allow for caching
 */
 func (a *Client) ExtrasConfigContextsRead(params *ExtrasConfigContextsReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasConfigContextsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -391,7 +461,7 @@ func (a *Client) ExtrasExportTemplatesDelete(params *ExtrasExportTemplatesDelete
 }
 
 /*
-ExtrasExportTemplatesList extras export templates list API
+ExtrasExportTemplatesList Call to super to allow for caching
 */
 func (a *Client) ExtrasExportTemplatesList(params *ExtrasExportTemplatesListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasExportTemplatesListOK, error) {
 	// TODO: Validate the params before sending
@@ -461,7 +531,7 @@ func (a *Client) ExtrasExportTemplatesPartialUpdate(params *ExtrasExportTemplate
 }
 
 /*
-ExtrasExportTemplatesRead extras export templates read API
+ExtrasExportTemplatesRead Call to super to allow for caching
 */
 func (a *Client) ExtrasExportTemplatesRead(params *ExtrasExportTemplatesReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasExportTemplatesReadOK, error) {
 	// TODO: Validate the params before sending
@@ -601,7 +671,7 @@ func (a *Client) ExtrasGraphsDelete(params *ExtrasGraphsDeleteParams, authInfo r
 }
 
 /*
-ExtrasGraphsList extras graphs list API
+ExtrasGraphsList Call to super to allow for caching
 */
 func (a *Client) ExtrasGraphsList(params *ExtrasGraphsListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasGraphsListOK, error) {
 	// TODO: Validate the params before sending
@@ -671,7 +741,7 @@ func (a *Client) ExtrasGraphsPartialUpdate(params *ExtrasGraphsPartialUpdatePara
 }
 
 /*
-ExtrasGraphsRead extras graphs read API
+ExtrasGraphsRead Call to super to allow for caching
 */
 func (a *Client) ExtrasGraphsRead(params *ExtrasGraphsReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasGraphsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -811,7 +881,7 @@ func (a *Client) ExtrasImageAttachmentsDelete(params *ExtrasImageAttachmentsDele
 }
 
 /*
-ExtrasImageAttachmentsList extras image attachments list API
+ExtrasImageAttachmentsList Call to super to allow for caching
 */
 func (a *Client) ExtrasImageAttachmentsList(params *ExtrasImageAttachmentsListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasImageAttachmentsListOK, error) {
 	// TODO: Validate the params before sending
@@ -881,7 +951,7 @@ func (a *Client) ExtrasImageAttachmentsPartialUpdate(params *ExtrasImageAttachme
 }
 
 /*
-ExtrasImageAttachmentsRead extras image attachments read API
+ExtrasImageAttachmentsRead Call to super to allow for caching
 */
 func (a *Client) ExtrasImageAttachmentsRead(params *ExtrasImageAttachmentsReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasImageAttachmentsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1196,7 +1266,7 @@ func (a *Client) ExtrasTagsDelete(params *ExtrasTagsDeleteParams, authInfo runti
 }
 
 /*
-ExtrasTagsList extras tags list API
+ExtrasTagsList Call to super to allow for caching
 */
 func (a *Client) ExtrasTagsList(params *ExtrasTagsListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasTagsListOK, error) {
 	// TODO: Validate the params before sending
@@ -1266,7 +1336,7 @@ func (a *Client) ExtrasTagsPartialUpdate(params *ExtrasTagsPartialUpdateParams, 
 }
 
 /*
-ExtrasTagsRead extras tags read API
+ExtrasTagsRead Call to super to allow for caching
 */
 func (a *Client) ExtrasTagsRead(params *ExtrasTagsReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasTagsReadOK, error) {
 	// TODO: Validate the params before sending
@@ -1406,7 +1476,7 @@ func (a *Client) ExtrasTopologyMapsDelete(params *ExtrasTopologyMapsDeleteParams
 }
 
 /*
-ExtrasTopologyMapsList extras topology maps list API
+ExtrasTopologyMapsList Call to super to allow for caching
 */
 func (a *Client) ExtrasTopologyMapsList(params *ExtrasTopologyMapsListParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasTopologyMapsListOK, error) {
 	// TODO: Validate the params before sending
@@ -1476,7 +1546,7 @@ func (a *Client) ExtrasTopologyMapsPartialUpdate(params *ExtrasTopologyMapsParti
 }
 
 /*
-ExtrasTopologyMapsRead extras topology maps read API
+ExtrasTopologyMapsRead Call to super to allow for caching
 */
 func (a *Client) ExtrasTopologyMapsRead(params *ExtrasTopologyMapsReadParams, authInfo runtime.ClientAuthInfoWriter) (*ExtrasTopologyMapsReadOK, error) {
 	// TODO: Validate the params before sending

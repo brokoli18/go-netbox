@@ -27,7 +27,7 @@ import (
 	"github.com/go-openapi/validate"
 )
 
-// NestedInterface Interface b
+// NestedInterface Interface a
 // swagger:model NestedInterface
 type NestedInterface struct {
 

@@ -80,14 +80,18 @@ type DcimInterfacesListParams struct {
 	Cabled *string
 	/*ConnectionStatus*/
 	ConnectionStatus *string
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
-	DeviceID *float64
+	DeviceID *string
 	/*Enabled*/
 	Enabled *string
-	/*FormFactor*/
-	FormFactor *string
+	/*ID*/
+	ID *string
+	/*Kind*/
+	Kind *string
 	/*LagID*/
 	LagID *string
 	/*Limit
@@ -99,8 +103,10 @@ type DcimInterfacesListParams struct {
 	MacAddress *string
 	/*MgmtOnly*/
 	MgmtOnly *string
+	/*Mode*/
+	Mode *string
 	/*Mtu*/
-	Mtu *float64
+	Mtu *string
 	/*Name*/
 	Name *string
 	/*Offset
@@ -179,6 +185,17 @@ func (o *DcimInterfacesListParams) SetConnectionStatus(connectionStatus *string)
 	o.ConnectionStatus = connectionStatus
 }
 
+// WithDescription adds the description to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithDescription(description *string) *DcimInterfacesListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetDescription(description *string) {
+	o.Description = description
+}
+
 // WithDevice adds the device to the dcim interfaces list params
 func (o *DcimInterfacesListParams) WithDevice(device *string) *DcimInterfacesListParams {
 	o.SetDevice(device)
@@ -191,13 +208,13 @@ func (o *DcimInterfacesListParams) SetDevice(device *string) {
 }
 
 // WithDeviceID adds the deviceID to the dcim interfaces list params
-func (o *DcimInterfacesListParams) WithDeviceID(deviceID *float64) *DcimInterfacesListParams {
+func (o *DcimInterfacesListParams) WithDeviceID(deviceID *string) *DcimInterfacesListParams {
 	o.SetDeviceID(deviceID)
 	return o
 }
 
 // SetDeviceID adds the deviceId to the dcim interfaces list params
-func (o *DcimInterfacesListParams) SetDeviceID(deviceID *float64) {
+func (o *DcimInterfacesListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
 }
 
@@ -212,15 +229,26 @@ func (o *DcimInterfacesListParams) SetEnabled(enabled *string) {
 	o.Enabled = enabled
 }
 
-// WithFormFactor adds the formFactor to the dcim interfaces list params
-func (o *DcimInterfacesListParams) WithFormFactor(formFactor *string) *DcimInterfacesListParams {
-	o.SetFormFactor(formFactor)
+// WithID adds the id to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithID(id *string) *DcimInterfacesListParams {
+	o.SetID(id)
 	return o
 }
 
-// SetFormFactor adds the formFactor to the dcim interfaces list params
-func (o *DcimInterfacesListParams) SetFormFactor(formFactor *string) {
-	o.FormFactor = formFactor
+// SetID adds the id to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetID(id *string) {
+	o.ID = id
+}
+
+// WithKind adds the kind to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithKind(kind *string) *DcimInterfacesListParams {
+	o.SetKind(kind)
+	return o
+}
+
+// SetKind adds the kind to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetKind(kind *string) {
+	o.Kind = kind
 }
 
 // WithLagID adds the lagID to the dcim interfaces list params
@@ -267,14 +295,25 @@ func (o *DcimInterfacesListParams) SetMgmtOnly(mgmtOnly *string) {
 	o.MgmtOnly = mgmtOnly
 }
 
+// WithMode adds the mode to the dcim interfaces list params
+func (o *DcimInterfacesListParams) WithMode(mode *string) *DcimInterfacesListParams {
+	o.SetMode(mode)
+	return o
+}
+
+// SetMode adds the mode to the dcim interfaces list params
+func (o *DcimInterfacesListParams) SetMode(mode *string) {
+	o.Mode = mode
+}
+
 // WithMtu adds the mtu to the dcim interfaces list params
-func (o *DcimInterfacesListParams) WithMtu(mtu *float64) *DcimInterfacesListParams {
+func (o *DcimInterfacesListParams) WithMtu(mtu *string) *DcimInterfacesListParams {
 	o.SetMtu(mtu)
 	return o
 }
 
 // SetMtu adds the mtu to the dcim interfaces list params
-func (o *DcimInterfacesListParams) SetMtu(mtu *float64) {
+func (o *DcimInterfacesListParams) SetMtu(mtu *string) {
 	o.Mtu = mtu
 }
 
@@ -395,6 +434,22 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 	}
 
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Device != nil {
 
 		// query param device
@@ -414,11 +469,11 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 	if o.DeviceID != nil {
 
 		// query param device_id
-		var qrDeviceID float64
+		var qrDeviceID string
 		if o.DeviceID != nil {
 			qrDeviceID = *o.DeviceID
 		}
-		qDeviceID := swag.FormatFloat64(qrDeviceID)
+		qDeviceID := qrDeviceID
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
 				return err
@@ -443,16 +498,32 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 	}
 
-	if o.FormFactor != nil {
+	if o.ID != nil {
 
-		// query param form_factor
-		var qrFormFactor string
-		if o.FormFactor != nil {
-			qrFormFactor = *o.FormFactor
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
 		}
-		qFormFactor := qrFormFactor
-		if qFormFactor != "" {
-			if err := r.SetQueryParam("form_factor", qFormFactor); err != nil {
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Kind != nil {
+
+		// query param kind
+		var qrKind string
+		if o.Kind != nil {
+			qrKind = *o.Kind
+		}
+		qKind := qrKind
+		if qKind != "" {
+			if err := r.SetQueryParam("kind", qKind); err != nil {
 				return err
 			}
 		}
@@ -523,14 +594,30 @@ func (o *DcimInterfacesListParams) WriteToRequest(r runtime.ClientRequest, reg s
 
 	}
 
+	if o.Mode != nil {
+
+		// query param mode
+		var qrMode string
+		if o.Mode != nil {
+			qrMode = *o.Mode
+		}
+		qMode := qrMode
+		if qMode != "" {
+			if err := r.SetQueryParam("mode", qMode); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Mtu != nil {
 
 		// query param mtu
-		var qrMtu float64
+		var qrMtu string
 		if o.Mtu != nil {
 			qrMtu = *o.Mtu
 		}
-		qMtu := swag.FormatFloat64(qrMtu)
+		qMtu := qrMtu
 		if qMtu != "" {
 			if err := r.SetQueryParam("mtu", qMtu); err != nil {
 				return err

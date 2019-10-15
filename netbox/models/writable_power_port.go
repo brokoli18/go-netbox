@@ -34,12 +34,23 @@ import (
 // swagger:model WritablePowerPort
 type WritablePowerPort struct {
 
+	// Allocated draw
+	//
+	// Allocated current draw (watts)
+	// Maximum: 32767
+	// Minimum: 1
+	AllocatedDraw *int64 `json:"allocated_draw,omitempty"`
+
 	// cable
 	Cable *NestedCable `json:"cable,omitempty"`
 
 	// Connected endpoint
+	//
+	//
+	//         Return the appropriate serializer for the type of connected object.
+	//
 	// Read Only: true
-	ConnectedEndpoint string `json:"connected_endpoint,omitempty"`
+	ConnectedEndpoint map[string]string `json:"connected_endpoint,omitempty"`
 
 	// Connected endpoint type
 	// Read Only: true
@@ -49,6 +60,10 @@ type WritablePowerPort struct {
 	// Enum: [false true]
 	ConnectionStatus bool `json:"connection_status,omitempty"`
 
+	// Description
+	// Max Length: 100
+	Description string `json:"description,omitempty"`
+
 	// Device
 	// Required: true
 	Device *int64 `json:"device"`
@@ -56,6 +71,13 @@ type WritablePowerPort struct {
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
+
+	// Maximum draw
+	//
+	// Maximum current draw (watts)
+	// Maximum: 32767
+	// Minimum: 1
+	MaximumDraw *int64 `json:"maximum_draw,omitempty"`
 
 	// Name
 	// Required: true
@@ -71,6 +93,10 @@ type WritablePowerPort struct {
 func (m *WritablePowerPort) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAllocatedDraw(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCable(formats); err != nil {
 		res = append(res, err)
 	}
@@ -79,7 +105,15 @@ func (m *WritablePowerPort) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateDescription(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateDevice(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateMaximumDraw(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -94,6 +128,23 @@ func (m *WritablePowerPort) Validate(formats strfmt.Registry) error {
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
+	return nil
+}
+
+func (m *WritablePowerPort) validateAllocatedDraw(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AllocatedDraw) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("allocated_draw", "body", int64(*m.AllocatedDraw), 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("allocated_draw", "body", int64(*m.AllocatedDraw), 32767, false); err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -149,9 +200,39 @@ func (m *WritablePowerPort) validateConnectionStatus(formats strfmt.Registry) er
 	return nil
 }
 
+func (m *WritablePowerPort) validateDescription(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Description) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *WritablePowerPort) validateDevice(formats strfmt.Registry) error {
 
 	if err := validate.Required("device", "body", m.Device); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *WritablePowerPort) validateMaximumDraw(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.MaximumDraw) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("maximum_draw", "body", int64(*m.MaximumDraw), 1, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("maximum_draw", "body", int64(*m.MaximumDraw), 32767, false); err != nil {
 		return err
 	}
 

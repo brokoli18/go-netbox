@@ -76,10 +76,14 @@ for the dcim device bays list operation typically these are written to a http.Re
 */
 type DcimDeviceBaysListParams struct {
 
+	/*Description*/
+	Description *string
 	/*Device*/
 	Device *string
 	/*DeviceID*/
 	DeviceID *string
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -135,6 +139,17 @@ func (o *DcimDeviceBaysListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
 }
 
+// WithDescription adds the description to the dcim device bays list params
+func (o *DcimDeviceBaysListParams) WithDescription(description *string) *DcimDeviceBaysListParams {
+	o.SetDescription(description)
+	return o
+}
+
+// SetDescription adds the description to the dcim device bays list params
+func (o *DcimDeviceBaysListParams) SetDescription(description *string) {
+	o.Description = description
+}
+
 // WithDevice adds the device to the dcim device bays list params
 func (o *DcimDeviceBaysListParams) WithDevice(device *string) *DcimDeviceBaysListParams {
 	o.SetDevice(device)
@@ -155,6 +170,17 @@ func (o *DcimDeviceBaysListParams) WithDeviceID(deviceID *string) *DcimDeviceBay
 // SetDeviceID adds the deviceId to the dcim device bays list params
 func (o *DcimDeviceBaysListParams) SetDeviceID(deviceID *string) {
 	o.DeviceID = deviceID
+}
+
+// WithID adds the id to the dcim device bays list params
+func (o *DcimDeviceBaysListParams) WithID(id *string) *DcimDeviceBaysListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the dcim device bays list params
+func (o *DcimDeviceBaysListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the dcim device bays list params
@@ -220,6 +246,22 @@ func (o *DcimDeviceBaysListParams) WriteToRequest(r runtime.ClientRequest, reg s
 	}
 	var res []error
 
+	if o.Description != nil {
+
+		// query param description
+		var qrDescription string
+		if o.Description != nil {
+			qrDescription = *o.Description
+		}
+		qDescription := qrDescription
+		if qDescription != "" {
+			if err := r.SetQueryParam("description", qDescription); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Device != nil {
 
 		// query param device
@@ -246,6 +288,22 @@ func (o *DcimDeviceBaysListParams) WriteToRequest(r runtime.ClientRequest, reg s
 		qDeviceID := qrDeviceID
 		if qDeviceID != "" {
 			if err := r.SetQueryParam("device_id", qDeviceID); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
 				return err
 			}
 		}

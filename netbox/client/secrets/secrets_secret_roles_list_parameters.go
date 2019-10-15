@@ -76,6 +76,8 @@ for the secrets secret roles list operation typically these are written to a htt
 */
 type SecretsSecretRolesListParams struct {
 
+	/*ID*/
+	ID *string
 	/*Limit
 	  Number of results to return per page.
 
@@ -129,6 +131,17 @@ func (o *SecretsSecretRolesListParams) WithHTTPClient(client *http.Client) *Secr
 // SetHTTPClient adds the HTTPClient to the secrets secret roles list params
 func (o *SecretsSecretRolesListParams) SetHTTPClient(client *http.Client) {
 	o.HTTPClient = client
+}
+
+// WithID adds the id to the secrets secret roles list params
+func (o *SecretsSecretRolesListParams) WithID(id *string) *SecretsSecretRolesListParams {
+	o.SetID(id)
+	return o
+}
+
+// SetID adds the id to the secrets secret roles list params
+func (o *SecretsSecretRolesListParams) SetID(id *string) {
+	o.ID = id
 }
 
 // WithLimit adds the limit to the secrets secret roles list params
@@ -193,6 +206,22 @@ func (o *SecretsSecretRolesListParams) WriteToRequest(r runtime.ClientRequest, r
 		return err
 	}
 	var res []error
+
+	if o.ID != nil {
+
+		// query param id
+		var qrID string
+		if o.ID != nil {
+			qrID = *o.ID
+		}
+		qID := qrID
+		if qID != "" {
+			if err := r.SetQueryParam("id", qID); err != nil {
+				return err
+			}
+		}
+
+	}
 
 	if o.Limit != nil {
 

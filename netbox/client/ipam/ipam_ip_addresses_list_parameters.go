@@ -82,6 +82,8 @@ type IpamIPAddressesListParams struct {
 	Device *string
 	/*DeviceID*/
 	DeviceID *float64
+	/*DNSName*/
+	DNSName *string
 	/*Family*/
 	Family *string
 	/*IDIn
@@ -89,6 +91,8 @@ type IpamIPAddressesListParams struct {
 
 	*/
 	IDIn *string
+	/*Interface*/
+	Interface *string
 	/*InterfaceID*/
 	InterfaceID *string
 	/*Limit
@@ -115,6 +119,10 @@ type IpamIPAddressesListParams struct {
 	Tag *string
 	/*Tenant*/
 	Tenant *string
+	/*TenantGroup*/
+	TenantGroup *string
+	/*TenantGroupID*/
+	TenantGroupID *string
 	/*TenantID*/
 	TenantID *string
 	/*VirtualMachine*/
@@ -197,6 +205,17 @@ func (o *IpamIPAddressesListParams) SetDeviceID(deviceID *float64) {
 	o.DeviceID = deviceID
 }
 
+// WithDNSName adds the dNSName to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) WithDNSName(dNSName *string) *IpamIPAddressesListParams {
+	o.SetDNSName(dNSName)
+	return o
+}
+
+// SetDNSName adds the dnsName to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) SetDNSName(dNSName *string) {
+	o.DNSName = dNSName
+}
+
 // WithFamily adds the family to the ipam ip addresses list params
 func (o *IpamIPAddressesListParams) WithFamily(family *string) *IpamIPAddressesListParams {
 	o.SetFamily(family)
@@ -217,6 +236,17 @@ func (o *IpamIPAddressesListParams) WithIDIn(iDIn *string) *IpamIPAddressesListP
 // SetIDIn adds the idIn to the ipam ip addresses list params
 func (o *IpamIPAddressesListParams) SetIDIn(iDIn *string) {
 	o.IDIn = iDIn
+}
+
+// WithInterface adds the interfaceVar to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) WithInterface(interfaceVar *string) *IpamIPAddressesListParams {
+	o.SetInterface(interfaceVar)
+	return o
+}
+
+// SetInterface adds the interface to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) SetInterface(interfaceVar *string) {
+	o.Interface = interfaceVar
 }
 
 // WithInterfaceID adds the interfaceID to the ipam ip addresses list params
@@ -327,6 +357,28 @@ func (o *IpamIPAddressesListParams) WithTenant(tenant *string) *IpamIPAddressesL
 // SetTenant adds the tenant to the ipam ip addresses list params
 func (o *IpamIPAddressesListParams) SetTenant(tenant *string) {
 	o.Tenant = tenant
+}
+
+// WithTenantGroup adds the tenantGroup to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) WithTenantGroup(tenantGroup *string) *IpamIPAddressesListParams {
+	o.SetTenantGroup(tenantGroup)
+	return o
+}
+
+// SetTenantGroup adds the tenantGroup to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) SetTenantGroup(tenantGroup *string) {
+	o.TenantGroup = tenantGroup
+}
+
+// WithTenantGroupID adds the tenantGroupID to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) WithTenantGroupID(tenantGroupID *string) *IpamIPAddressesListParams {
+	o.SetTenantGroupID(tenantGroupID)
+	return o
+}
+
+// SetTenantGroupID adds the tenantGroupId to the ipam ip addresses list params
+func (o *IpamIPAddressesListParams) SetTenantGroupID(tenantGroupID *string) {
+	o.TenantGroupID = tenantGroupID
 }
 
 // WithTenantID adds the tenantID to the ipam ip addresses list params
@@ -440,6 +492,22 @@ func (o *IpamIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 
 	}
 
+	if o.DNSName != nil {
+
+		// query param dns_name
+		var qrDNSName string
+		if o.DNSName != nil {
+			qrDNSName = *o.DNSName
+		}
+		qDNSName := qrDNSName
+		if qDNSName != "" {
+			if err := r.SetQueryParam("dns_name", qDNSName); err != nil {
+				return err
+			}
+		}
+
+	}
+
 	if o.Family != nil {
 
 		// query param family
@@ -466,6 +534,22 @@ func (o *IpamIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		qIDIn := qrIDIn
 		if qIDIn != "" {
 			if err := r.SetQueryParam("id__in", qIDIn); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.Interface != nil {
+
+		// query param interface
+		var qrInterface string
+		if o.Interface != nil {
+			qrInterface = *o.Interface
+		}
+		qInterface := qrInterface
+		if qInterface != "" {
+			if err := r.SetQueryParam("interface", qInterface); err != nil {
 				return err
 			}
 		}
@@ -626,6 +710,38 @@ func (o *IpamIPAddressesListParams) WriteToRequest(r runtime.ClientRequest, reg 
 		qTenant := qrTenant
 		if qTenant != "" {
 			if err := r.SetQueryParam("tenant", qTenant); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroup != nil {
+
+		// query param tenant_group
+		var qrTenantGroup string
+		if o.TenantGroup != nil {
+			qrTenantGroup = *o.TenantGroup
+		}
+		qTenantGroup := qrTenantGroup
+		if qTenantGroup != "" {
+			if err := r.SetQueryParam("tenant_group", qTenantGroup); err != nil {
+				return err
+			}
+		}
+
+	}
+
+	if o.TenantGroupID != nil {
+
+		// query param tenant_group_id
+		var qrTenantGroupID string
+		if o.TenantGroupID != nil {
+			qrTenantGroupID = *o.TenantGroupID
+		}
+		qTenantGroupID := qrTenantGroupID
+		if qTenantGroupID != "" {
+			if err := r.SetQueryParam("tenant_group_id", qTenantGroupID); err != nil {
 				return err
 			}
 		}
