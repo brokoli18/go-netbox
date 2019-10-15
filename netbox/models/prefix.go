@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -43,9 +45,8 @@ type Prefix struct {
 	// Max Length: 100
 	Description string `json:"description,omitempty"`
 
-	// Family
-	// Read Only: true
-	Family int64 `json:"family,omitempty"`
+	// family
+	Family *PrefixFamily `json:"family,omitempty"`
 
 	// ID
 	// Read Only: true
@@ -76,7 +77,7 @@ type Prefix struct {
 	// status
 	Status *PrefixStatus `json:"status,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -101,6 +102,10 @@ func (m *Prefix) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateFamily(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateLastUpdated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -118,6 +123,10 @@ func (m *Prefix) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -160,6 +169,24 @@ func (m *Prefix) validateDescription(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("description", "body", string(m.Description), 100); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *Prefix) validateFamily(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Family) { // not required
+		return nil
+	}
+
+	if m.Family != nil {
+		if err := m.Family.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("family")
+			}
+			return err
+		}
 	}
 
 	return nil
@@ -241,6 +268,23 @@ func (m *Prefix) validateStatus(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Prefix) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *Prefix) validateTenant(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Tenant) { // not required
@@ -306,6 +350,73 @@ func (m *Prefix) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Prefix) UnmarshalBinary(b []byte) error {
 	var res Prefix
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// PrefixFamily Family
+// swagger:model PrefixFamily
+type PrefixFamily struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this prefix family
+func (m *PrefixFamily) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *PrefixFamily) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("family"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *PrefixFamily) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("family"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *PrefixFamily) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *PrefixFamily) UnmarshalBinary(b []byte) error {
+	var res PrefixFamily
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

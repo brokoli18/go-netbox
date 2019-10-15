@@ -34,17 +34,13 @@ type InterfaceConnection struct {
 	// connection status
 	ConnectionStatus *InterfaceConnectionConnectionStatus `json:"connection_status,omitempty"`
 
-	// ID
+	// Interface a
 	// Read Only: true
-	ID int64 `json:"id,omitempty"`
-
-	// interface a
-	// Required: true
-	InterfaceA *NestedInterface `json:"interface_a"`
+	Interfacea string `json:"interface_a,omitempty"`
 
 	// interface b
 	// Required: true
-	InterfaceB *NestedInterface `json:"interface_b"`
+	Interfaceb *NestedInterface `json:"interface_b"`
 }
 
 // Validate validates this interface connection
@@ -55,11 +51,7 @@ func (m *InterfaceConnection) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
-	if err := m.validateInterfaceA(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInterfaceB(formats); err != nil {
+	if err := m.validateInterfaceb(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -87,32 +79,14 @@ func (m *InterfaceConnection) validateConnectionStatus(formats strfmt.Registry) 
 	return nil
 }
 
-func (m *InterfaceConnection) validateInterfaceA(formats strfmt.Registry) error {
+func (m *InterfaceConnection) validateInterfaceb(formats strfmt.Registry) error {
 
-	if err := validate.Required("interface_a", "body", m.InterfaceA); err != nil {
+	if err := validate.Required("interface_b", "body", m.Interfaceb); err != nil {
 		return err
 	}
 
-	if m.InterfaceA != nil {
-		if err := m.InterfaceA.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("interface_a")
-			}
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (m *InterfaceConnection) validateInterfaceB(formats strfmt.Registry) error {
-
-	if err := validate.Required("interface_b", "body", m.InterfaceB); err != nil {
-		return err
-	}
-
-	if m.InterfaceB != nil {
-		if err := m.InterfaceB.Validate(formats); err != nil {
+	if m.Interfaceb != nil {
+		if err := m.Interfaceb.Validate(formats); err != nil {
 			if ve, ok := err.(*errors.Validation); ok {
 				return ve.ValidateName("interface_b")
 			}

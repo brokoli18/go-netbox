@@ -20,10 +20,9 @@ package tenancy
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the tenancy tenants update operation typically these are written to a http.R
 type TenancyTenantsUpdateParams struct {
 
 	/*Data*/
-	Data *models.TenantCreateUpdate
+	Data *models.WritableTenant
 	/*ID
 	  A unique integer value identifying this tenant.
 
@@ -126,13 +125,13 @@ func (o *TenancyTenantsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the tenancy tenants update params
-func (o *TenancyTenantsUpdateParams) WithData(data *models.TenantCreateUpdate) *TenancyTenantsUpdateParams {
+func (o *TenancyTenantsUpdateParams) WithData(data *models.WritableTenant) *TenancyTenantsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the tenancy tenants update params
-func (o *TenancyTenantsUpdateParams) SetData(data *models.TenantCreateUpdate) {
+func (o *TenancyTenantsUpdateParams) SetData(data *models.WritableTenant) {
 	o.Data = data
 }
 

@@ -38,7 +38,6 @@ type DcimDeviceBaysReadReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDeviceBaysReadReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDeviceBaysReadOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimDeviceBaysReadOK struct {
 
 func (o *DcimDeviceBaysReadOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/device-bays/{id}/][%d] dcimDeviceBaysReadOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimDeviceBaysReadOK) GetPayload() *models.DeviceBay {
+	return o.Payload
 }
 
 func (o *DcimDeviceBaysReadOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

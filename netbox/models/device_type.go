@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -42,6 +44,10 @@ type DeviceType struct {
 	// Custom fields
 	CustomFields interface{} `json:"custom_fields,omitempty"`
 
+	// Display name
+	// Read Only: true
+	DisplayName string `json:"display_name,omitempty"`
+
 	// ID
 	// Read Only: true
 	ID int64 `json:"id,omitempty"`
@@ -50,28 +56,10 @@ type DeviceType struct {
 	// Read Only: true
 	InstanceCount int64 `json:"instance_count,omitempty"`
 
-	// interface ordering
-	InterfaceOrdering *DeviceTypeInterfaceOrdering `json:"interface_ordering,omitempty"`
-
-	// Is a console server
-	//
-	// This type of device has console server ports
-	IsConsoleServer bool `json:"is_console_server,omitempty"`
-
 	// Is full depth
 	//
 	// Device consumes both front and rear rack faces
 	IsFullDepth bool `json:"is_full_depth,omitempty"`
-
-	// Is a network device
-	//
-	// This type of device has network interfaces
-	IsNetworkDevice bool `json:"is_network_device,omitempty"`
-
-	// Is a PDU
-	//
-	// This type of device has power outlets
-	IsPdu bool `json:"is_pdu,omitempty"`
 
 	// Last updated
 	// Read Only: true
@@ -104,7 +92,7 @@ type DeviceType struct {
 	// subdevice role
 	SubdeviceRole *DeviceTypeSubdeviceRole `json:"subdevice_role,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// Height (U)
@@ -118,10 +106,6 @@ func (m *DeviceType) Validate(formats strfmt.Registry) error {
 	var res []error
 
 	if err := m.validateCreated(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateInterfaceOrdering(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -149,6 +133,10 @@ func (m *DeviceType) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateUHeight(formats); err != nil {
 		res = append(res, err)
 	}
@@ -167,24 +155,6 @@ func (m *DeviceType) validateCreated(formats strfmt.Registry) error {
 
 	if err := validate.FormatOf("created", "body", "date", m.Created.String(), formats); err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceType) validateInterfaceOrdering(formats strfmt.Registry) error {
-
-	if swag.IsZero(m.InterfaceOrdering) { // not required
-		return nil
-	}
-
-	if m.InterfaceOrdering != nil {
-		if err := m.InterfaceOrdering.Validate(formats); err != nil {
-			if ve, ok := err.(*errors.Validation); ok {
-				return ve.ValidateName("interface_ordering")
-			}
-			return err
-		}
 	}
 
 	return nil
@@ -290,6 +260,23 @@ func (m *DeviceType) validateSubdeviceRole(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *DeviceType) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
+	}
+
+	return nil
+}
+
 func (m *DeviceType) validateUHeight(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.UHeight) { // not required
@@ -318,73 +305,6 @@ func (m *DeviceType) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *DeviceType) UnmarshalBinary(b []byte) error {
 	var res DeviceType
-	if err := swag.ReadJSON(b, &res); err != nil {
-		return err
-	}
-	*m = res
-	return nil
-}
-
-// DeviceTypeInterfaceOrdering Interface ordering
-// swagger:model DeviceTypeInterfaceOrdering
-type DeviceTypeInterfaceOrdering struct {
-
-	// label
-	// Required: true
-	Label *string `json:"label"`
-
-	// value
-	// Required: true
-	Value *int64 `json:"value"`
-}
-
-// Validate validates this device type interface ordering
-func (m *DeviceTypeInterfaceOrdering) Validate(formats strfmt.Registry) error {
-	var res []error
-
-	if err := m.validateLabel(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if err := m.validateValue(formats); err != nil {
-		res = append(res, err)
-	}
-
-	if len(res) > 0 {
-		return errors.CompositeValidationError(res...)
-	}
-	return nil
-}
-
-func (m *DeviceTypeInterfaceOrdering) validateLabel(formats strfmt.Registry) error {
-
-	if err := validate.Required("interface_ordering"+"."+"label", "body", m.Label); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *DeviceTypeInterfaceOrdering) validateValue(formats strfmt.Registry) error {
-
-	if err := validate.Required("interface_ordering"+"."+"value", "body", m.Value); err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// MarshalBinary interface implementation
-func (m *DeviceTypeInterfaceOrdering) MarshalBinary() ([]byte, error) {
-	if m == nil {
-		return nil, nil
-	}
-	return swag.WriteJSON(m)
-}
-
-// UnmarshalBinary interface implementation
-func (m *DeviceTypeInterfaceOrdering) UnmarshalBinary(b []byte) error {
-	var res DeviceTypeInterfaceOrdering
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

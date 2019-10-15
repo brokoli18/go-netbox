@@ -38,7 +38,6 @@ type VirtualizationInterfacesPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationInterfacesPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationInterfacesPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,16 +60,20 @@ func NewVirtualizationInterfacesPartialUpdateOK() *VirtualizationInterfacesParti
 VirtualizationInterfacesPartialUpdateOK virtualization interfaces partial update o k
 */
 type VirtualizationInterfacesPartialUpdateOK struct {
-	Payload *models.Interface
+	Payload *models.VirtualMachineInterface
 }
 
 func (o *VirtualizationInterfacesPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /virtualization/interfaces/{id}/][%d] virtualizationInterfacesPartialUpdateOK  %+v", 200, o.Payload)
 }
 
+func (o *VirtualizationInterfacesPartialUpdateOK) GetPayload() *models.VirtualMachineInterface {
+	return o.Payload
+}
+
 func (o *VirtualizationInterfacesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interface)
+	o.Payload = new(models.VirtualMachineInterface)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

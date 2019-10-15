@@ -38,7 +38,6 @@ type VirtualizationClusterGroupsUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationClusterGroupsUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationClusterGroupsUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type VirtualizationClusterGroupsUpdateOK struct {
 
 func (o *VirtualizationClusterGroupsUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /virtualization/cluster-groups/{id}/][%d] virtualizationClusterGroupsUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationClusterGroupsUpdateOK) GetPayload() *models.ClusterGroup {
+	return o.Payload
 }
 
 func (o *VirtualizationClusterGroupsUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

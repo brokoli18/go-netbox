@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim rack reservations create operation typically these are written to a
 type DcimRackReservationsCreateParams struct {
 
 	/*Data*/
-	Data *models.RackReservation
+	Data *models.WritableRackReservation
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimRackReservationsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim rack reservations create params
-func (o *DcimRackReservationsCreateParams) WithData(data *models.RackReservation) *DcimRackReservationsCreateParams {
+func (o *DcimRackReservationsCreateParams) WithData(data *models.WritableRackReservation) *DcimRackReservationsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim rack reservations create params
-func (o *DcimRackReservationsCreateParams) SetData(data *models.RackReservation) {
+func (o *DcimRackReservationsCreateParams) SetData(data *models.WritableRackReservation) {
 	o.Data = data
 }
 

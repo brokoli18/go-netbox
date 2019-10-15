@@ -38,7 +38,6 @@ type ExtrasTopologyMapsPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasTopologyMapsPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasTopologyMapsPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasTopologyMapsPartialUpdateOK struct {
 
 func (o *ExtrasTopologyMapsPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /extras/topology-maps/{id}/][%d] extrasTopologyMapsPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasTopologyMapsPartialUpdateOK) GetPayload() *models.TopologyMap {
+	return o.Payload
 }
 
 func (o *ExtrasTopologyMapsPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

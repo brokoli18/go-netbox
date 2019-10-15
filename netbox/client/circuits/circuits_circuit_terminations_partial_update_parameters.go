@@ -20,10 +20,9 @@ package circuits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the circuits circuit terminations partial update operation typically these a
 type CircuitsCircuitTerminationsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.CircuitTermination
+	Data *models.WritableCircuitTermination
 	/*ID
 	  A unique integer value identifying this circuit termination.
 
@@ -126,13 +125,13 @@ func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetHTTPClient(client *h
 }
 
 // WithData adds the data to the circuits circuit terminations partial update params
-func (o *CircuitsCircuitTerminationsPartialUpdateParams) WithData(data *models.CircuitTermination) *CircuitsCircuitTerminationsPartialUpdateParams {
+func (o *CircuitsCircuitTerminationsPartialUpdateParams) WithData(data *models.WritableCircuitTermination) *CircuitsCircuitTerminationsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuit terminations partial update params
-func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetData(data *models.CircuitTermination) {
+func (o *CircuitsCircuitTerminationsPartialUpdateParams) SetData(data *models.WritableCircuitTermination) {
 	o.Data = data
 }
 

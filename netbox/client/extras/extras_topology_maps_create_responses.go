@@ -38,7 +38,6 @@ type ExtrasTopologyMapsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasTopologyMapsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewExtrasTopologyMapsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type ExtrasTopologyMapsCreateCreated struct {
 
 func (o *ExtrasTopologyMapsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /extras/topology-maps/][%d] extrasTopologyMapsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *ExtrasTopologyMapsCreateCreated) GetPayload() *models.TopologyMap {
+	return o.Payload
 }
 
 func (o *ExtrasTopologyMapsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

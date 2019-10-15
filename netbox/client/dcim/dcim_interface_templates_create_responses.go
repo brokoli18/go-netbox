@@ -38,7 +38,6 @@ type DcimInterfaceTemplatesCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimInterfaceTemplatesCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimInterfaceTemplatesCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimInterfaceTemplatesCreateCreated struct {
 
 func (o *DcimInterfaceTemplatesCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/interface-templates/][%d] dcimInterfaceTemplatesCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimInterfaceTemplatesCreateCreated) GetPayload() *models.InterfaceTemplate {
+	return o.Payload
 }
 
 func (o *DcimInterfaceTemplatesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

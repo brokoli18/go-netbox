@@ -38,7 +38,6 @@ type VirtualizationVirtualMachinesUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationVirtualMachinesUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationVirtualMachinesUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type VirtualizationVirtualMachinesUpdateOK struct {
 
 func (o *VirtualizationVirtualMachinesUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /virtualization/virtual-machines/{id}/][%d] virtualizationVirtualMachinesUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationVirtualMachinesUpdateOK) GetPayload() *models.VirtualMachine {
+	return o.Payload
 }
 
 func (o *VirtualizationVirtualMachinesUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -20,10 +20,9 @@ package virtualization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the virtualization interfaces update operation typically these are written t
 type VirtualizationInterfacesUpdateParams struct {
 
 	/*Data*/
-	Data *models.Interface
+	Data *models.WritableVirtualMachineInterface
 	/*ID
 	  A unique integer value identifying this interface.
 
@@ -126,13 +125,13 @@ func (o *VirtualizationInterfacesUpdateParams) SetHTTPClient(client *http.Client
 }
 
 // WithData adds the data to the virtualization interfaces update params
-func (o *VirtualizationInterfacesUpdateParams) WithData(data *models.Interface) *VirtualizationInterfacesUpdateParams {
+func (o *VirtualizationInterfacesUpdateParams) WithData(data *models.WritableVirtualMachineInterface) *VirtualizationInterfacesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization interfaces update params
-func (o *VirtualizationInterfacesUpdateParams) SetData(data *models.Interface) {
+func (o *VirtualizationInterfacesUpdateParams) SetData(data *models.WritableVirtualMachineInterface) {
 	o.Data = data
 }
 

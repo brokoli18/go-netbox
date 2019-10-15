@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim device bay templates update operation typically these are written t
 type DcimDeviceBayTemplatesUpdateParams struct {
 
 	/*Data*/
-	Data *models.DeviceBayTemplate
+	Data *models.WritableDeviceBayTemplate
 	/*ID
 	  A unique integer value identifying this device bay template.
 
@@ -126,13 +125,13 @@ func (o *DcimDeviceBayTemplatesUpdateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the dcim device bay templates update params
-func (o *DcimDeviceBayTemplatesUpdateParams) WithData(data *models.DeviceBayTemplate) *DcimDeviceBayTemplatesUpdateParams {
+func (o *DcimDeviceBayTemplatesUpdateParams) WithData(data *models.WritableDeviceBayTemplate) *DcimDeviceBayTemplatesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim device bay templates update params
-func (o *DcimDeviceBayTemplatesUpdateParams) SetData(data *models.DeviceBayTemplate) {
+func (o *DcimDeviceBayTemplatesUpdateParams) SetData(data *models.WritableDeviceBayTemplate) {
 	o.Data = data
 }
 

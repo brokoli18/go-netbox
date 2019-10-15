@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim device types create operation typically these are written to a http
 type DcimDeviceTypesCreateParams struct {
 
 	/*Data*/
-	Data *models.DeviceType
+	Data *models.WritableDeviceType
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimDeviceTypesCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim device types create params
-func (o *DcimDeviceTypesCreateParams) WithData(data *models.DeviceType) *DcimDeviceTypesCreateParams {
+func (o *DcimDeviceTypesCreateParams) WithData(data *models.WritableDeviceType) *DcimDeviceTypesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim device types create params
-func (o *DcimDeviceTypesCreateParams) SetData(data *models.DeviceType) {
+func (o *DcimDeviceTypesCreateParams) SetData(data *models.WritableDeviceType) {
 	o.Data = data
 }
 

@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim console server port templates update operation typically these are 
 type DcimConsoleServerPortTemplatesUpdateParams struct {
 
 	/*Data*/
-	Data *models.ConsoleServerPortTemplate
+	Data *models.WritableConsoleServerPortTemplate
 	/*ID
 	  A unique integer value identifying this console server port template.
 
@@ -126,13 +125,13 @@ func (o *DcimConsoleServerPortTemplatesUpdateParams) SetHTTPClient(client *http.
 }
 
 // WithData adds the data to the dcim console server port templates update params
-func (o *DcimConsoleServerPortTemplatesUpdateParams) WithData(data *models.ConsoleServerPortTemplate) *DcimConsoleServerPortTemplatesUpdateParams {
+func (o *DcimConsoleServerPortTemplatesUpdateParams) WithData(data *models.WritableConsoleServerPortTemplate) *DcimConsoleServerPortTemplatesUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console server port templates update params
-func (o *DcimConsoleServerPortTemplatesUpdateParams) SetData(data *models.ConsoleServerPortTemplate) {
+func (o *DcimConsoleServerPortTemplatesUpdateParams) SetData(data *models.WritableConsoleServerPortTemplate) {
 	o.Data = data
 }
 

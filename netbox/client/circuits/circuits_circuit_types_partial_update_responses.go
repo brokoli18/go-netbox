@@ -38,7 +38,6 @@ type CircuitsCircuitTypesPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CircuitsCircuitTypesPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCircuitsCircuitTypesPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type CircuitsCircuitTypesPartialUpdateOK struct {
 
 func (o *CircuitsCircuitTypesPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /circuits/circuit-types/{id}/][%d] circuitsCircuitTypesPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *CircuitsCircuitTypesPartialUpdateOK) GetPayload() *models.CircuitType {
+	return o.Payload
 }
 
 func (o *CircuitsCircuitTypesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

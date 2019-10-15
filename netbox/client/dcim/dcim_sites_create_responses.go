@@ -38,7 +38,6 @@ type DcimSitesCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimSitesCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimSitesCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimSitesCreateCreated struct {
 
 func (o *DcimSitesCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/sites/][%d] dcimSitesCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimSitesCreateCreated) GetPayload() *models.Site {
+	return o.Payload
 }
 
 func (o *DcimSitesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

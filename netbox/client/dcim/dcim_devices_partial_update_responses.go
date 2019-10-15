@@ -38,7 +38,6 @@ type DcimDevicesPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDevicesPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDevicesPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimDevicesPartialUpdateOK struct {
 
 func (o *DcimDevicesPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /dcim/devices/{id}/][%d] dcimDevicesPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimDevicesPartialUpdateOK) GetPayload() *models.Device {
+	return o.Payload
 }
 
 func (o *DcimDevicesPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

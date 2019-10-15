@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim device bays partial update operation typically these are written to
 type DcimDeviceBaysPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.DeviceBay
+	Data *models.WritableDeviceBay
 	/*ID
 	  A unique integer value identifying this device bay.
 
@@ -126,13 +125,13 @@ func (o *DcimDeviceBaysPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim device bays partial update params
-func (o *DcimDeviceBaysPartialUpdateParams) WithData(data *models.DeviceBay) *DcimDeviceBaysPartialUpdateParams {
+func (o *DcimDeviceBaysPartialUpdateParams) WithData(data *models.WritableDeviceBay) *DcimDeviceBaysPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim device bays partial update params
-func (o *DcimDeviceBaysPartialUpdateParams) SetData(data *models.DeviceBay) {
+func (o *DcimDeviceBaysPartialUpdateParams) SetData(data *models.WritableDeviceBay) {
 	o.Data = data
 }
 

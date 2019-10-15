@@ -42,7 +42,6 @@ type VirtualizationClustersListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *VirtualizationClustersListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewVirtualizationClustersListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type VirtualizationClustersListOK struct {
 
 func (o *VirtualizationClustersListOK) Error() string {
 	return fmt.Sprintf("[GET /virtualization/clusters/][%d] virtualizationClustersListOK  %+v", 200, o.Payload)
+}
+
+func (o *VirtualizationClustersListOK) GetPayload() *VirtualizationClustersListOKBody {
+	return o.Payload
 }
 
 func (o *VirtualizationClustersListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

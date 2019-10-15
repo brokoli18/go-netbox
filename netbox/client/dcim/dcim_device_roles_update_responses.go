@@ -38,7 +38,6 @@ type DcimDeviceRolesUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDeviceRolesUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimDeviceRolesUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimDeviceRolesUpdateOK struct {
 
 func (o *DcimDeviceRolesUpdateOK) Error() string {
 	return fmt.Sprintf("[PUT /dcim/device-roles/{id}/][%d] dcimDeviceRolesUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimDeviceRolesUpdateOK) GetPayload() *models.DeviceRole {
+	return o.Payload
 }
 
 func (o *DcimDeviceRolesUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

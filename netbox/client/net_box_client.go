@@ -83,7 +83,7 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *NetBox {
 
 	cli.Extras = extras.New(transport, formats)
 
-	cli.IPAM = ipam.New(transport, formats)
+	cli.Ipam = ipam.New(transport, formats)
 
 	cli.Secrets = secrets.New(transport, formats)
 
@@ -141,7 +141,7 @@ type NetBox struct {
 
 	Extras *extras.Client
 
-	IPAM *ipam.Client
+	Ipam *ipam.Client
 
 	Secrets *secrets.Client
 
@@ -162,7 +162,7 @@ func (c *NetBox) SetTransport(transport runtime.ClientTransport) {
 
 	c.Extras.SetTransport(transport)
 
-	c.IPAM.SetTransport(transport)
+	c.Ipam.SetTransport(transport)
 
 	c.Secrets.SetTransport(transport)
 

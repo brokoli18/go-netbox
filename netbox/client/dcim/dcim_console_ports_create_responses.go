@@ -38,7 +38,6 @@ type DcimConsolePortsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimConsolePortsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimConsolePortsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimConsolePortsCreateCreated struct {
 
 func (o *DcimConsolePortsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/console-ports/][%d] dcimConsolePortsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimConsolePortsCreateCreated) GetPayload() *models.ConsolePort {
+	return o.Payload
 }
 
 func (o *DcimConsolePortsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

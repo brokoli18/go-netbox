@@ -20,10 +20,9 @@ package virtualization
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the virtualization virtual machines create operation typically these are wri
 type VirtualizationVirtualMachinesCreateParams struct {
 
 	/*Data*/
-	Data *models.VirtualMachine
+	Data *models.WritableVirtualMachine
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *VirtualizationVirtualMachinesCreateParams) SetHTTPClient(client *http.C
 }
 
 // WithData adds the data to the virtualization virtual machines create params
-func (o *VirtualizationVirtualMachinesCreateParams) WithData(data *models.VirtualMachine) *VirtualizationVirtualMachinesCreateParams {
+func (o *VirtualizationVirtualMachinesCreateParams) WithData(data *models.WritableVirtualMachine) *VirtualizationVirtualMachinesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the virtualization virtual machines create params
-func (o *VirtualizationVirtualMachinesCreateParams) SetData(data *models.VirtualMachine) {
+func (o *VirtualizationVirtualMachinesCreateParams) SetData(data *models.WritableVirtualMachine) {
 	o.Data = data
 }
 

@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim inventory items create operation typically these are written to a h
 type DcimInventoryItemsCreateParams struct {
 
 	/*Data*/
-	Data *models.InventoryItem
+	Data *models.WritableInventoryItem
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimInventoryItemsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim inventory items create params
-func (o *DcimInventoryItemsCreateParams) WithData(data *models.InventoryItem) *DcimInventoryItemsCreateParams {
+func (o *DcimInventoryItemsCreateParams) WithData(data *models.WritableInventoryItem) *DcimInventoryItemsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim inventory items create params
-func (o *DcimInventoryItemsCreateParams) SetData(data *models.InventoryItem) {
+func (o *DcimInventoryItemsCreateParams) SetData(data *models.WritableInventoryItem) {
 	o.Data = data
 }
 

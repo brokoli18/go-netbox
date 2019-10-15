@@ -38,7 +38,6 @@ type DcimVirtualChassisPartialUpdateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimVirtualChassisPartialUpdateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimVirtualChassisPartialUpdateOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimVirtualChassisPartialUpdateOK struct {
 
 func (o *DcimVirtualChassisPartialUpdateOK) Error() string {
 	return fmt.Sprintf("[PATCH /dcim/virtual-chassis/{id}/][%d] dcimVirtualChassisPartialUpdateOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimVirtualChassisPartialUpdateOK) GetPayload() *models.VirtualChassis {
+	return o.Payload
 }
 
 func (o *DcimVirtualChassisPartialUpdateOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

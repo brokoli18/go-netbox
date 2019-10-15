@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim device bays create operation typically these are written to a http.
 type DcimDeviceBaysCreateParams struct {
 
 	/*Data*/
-	Data *models.DeviceBay
+	Data *models.WritableDeviceBay
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimDeviceBaysCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim device bays create params
-func (o *DcimDeviceBaysCreateParams) WithData(data *models.DeviceBay) *DcimDeviceBaysCreateParams {
+func (o *DcimDeviceBaysCreateParams) WithData(data *models.WritableDeviceBay) *DcimDeviceBaysCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim device bays create params
-func (o *DcimDeviceBaysCreateParams) SetData(data *models.DeviceBay) {
+func (o *DcimDeviceBaysCreateParams) SetData(data *models.WritableDeviceBay) {
 	o.Data = data
 }
 

@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim console server ports partial update operation typically these are w
 type DcimConsoleServerPortsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.ConsoleServerPort
+	Data *models.WritableConsoleServerPort
 	/*ID
 	  A unique integer value identifying this console server port.
 
@@ -126,13 +125,13 @@ func (o *DcimConsoleServerPortsPartialUpdateParams) SetHTTPClient(client *http.C
 }
 
 // WithData adds the data to the dcim console server ports partial update params
-func (o *DcimConsoleServerPortsPartialUpdateParams) WithData(data *models.ConsoleServerPort) *DcimConsoleServerPortsPartialUpdateParams {
+func (o *DcimConsoleServerPortsPartialUpdateParams) WithData(data *models.WritableConsoleServerPort) *DcimConsoleServerPortsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim console server ports partial update params
-func (o *DcimConsoleServerPortsPartialUpdateParams) SetData(data *models.ConsoleServerPort) {
+func (o *DcimConsoleServerPortsPartialUpdateParams) SetData(data *models.WritableConsoleServerPort) {
 	o.Data = data
 }
 

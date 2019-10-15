@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -30,6 +32,12 @@ import (
 // Rack rack
 // swagger:model Rack
 type Rack struct {
+
+	// Asset tag
+	//
+	// A unique tag used to identify this rack
+	// Max Length: 50
+	AssetTag *string `json:"asset_tag,omitempty"`
 
 	// Comments
 	Comments string `json:"comments,omitempty"`
@@ -53,7 +61,7 @@ type Rack struct {
 
 	// Facility ID
 	// Max Length: 50
-	FacilityID string `json:"facility_id,omitempty"`
+	FacilityID *string `json:"facility_id,omitempty"`
 
 	// group
 	Group *NestedRackGroup `json:"group,omitempty"`
@@ -73,6 +81,19 @@ type Rack struct {
 	// Min Length: 1
 	Name *string `json:"name"`
 
+	// Outer depth
+	// Maximum: 32767
+	// Minimum: 0
+	OuterDepth *int64 `json:"outer_depth,omitempty"`
+
+	// outer unit
+	OuterUnit *RackOuterUnit `json:"outer_unit,omitempty"`
+
+	// Outer width
+	// Maximum: 32767
+	// Minimum: 0
+	OuterWidth *int64 `json:"outer_width,omitempty"`
+
 	// role
 	Role *NestedRackRole `json:"role,omitempty"`
 
@@ -84,7 +105,10 @@ type Rack struct {
 	// Required: true
 	Site *NestedSite `json:"site"`
 
-	// Tags
+	// status
+	Status *RackStatus `json:"status,omitempty"`
+
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -106,6 +130,10 @@ type Rack struct {
 func (m *Rack) Validate(formats strfmt.Registry) error {
 	var res []error
 
+	if err := m.validateAssetTag(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateCreated(formats); err != nil {
 		res = append(res, err)
 	}
@@ -126,6 +154,18 @@ func (m *Rack) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateOuterDepth(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOuterUnit(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateOuterWidth(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateRole(formats); err != nil {
 		res = append(res, err)
 	}
@@ -135,6 +175,14 @@ func (m *Rack) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateSite(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateStatus(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -160,6 +208,19 @@ func (m *Rack) Validate(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Rack) validateAssetTag(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.AssetTag) { // not required
+		return nil
+	}
+
+	if err := validate.MaxLength("asset_tag", "body", string(*m.AssetTag), 50); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Rack) validateCreated(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Created) { // not required
@@ -179,7 +240,7 @@ func (m *Rack) validateFacilityID(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MaxLength("facility_id", "body", string(m.FacilityID), 50); err != nil {
+	if err := validate.MaxLength("facility_id", "body", string(*m.FacilityID), 50); err != nil {
 		return err
 	}
 
@@ -234,6 +295,58 @@ func (m *Rack) validateName(formats strfmt.Registry) error {
 	return nil
 }
 
+func (m *Rack) validateOuterDepth(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OuterDepth) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("outer_depth", "body", int64(*m.OuterDepth), 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("outer_depth", "body", int64(*m.OuterDepth), 32767, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *Rack) validateOuterUnit(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OuterUnit) { // not required
+		return nil
+	}
+
+	if m.OuterUnit != nil {
+		if err := m.OuterUnit.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("outer_unit")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Rack) validateOuterWidth(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.OuterWidth) { // not required
+		return nil
+	}
+
+	if err := validate.MinimumInt("outer_width", "body", int64(*m.OuterWidth), 0, false); err != nil {
+		return err
+	}
+
+	if err := validate.MaximumInt("outer_width", "body", int64(*m.OuterWidth), 32767, false); err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (m *Rack) validateRole(formats strfmt.Registry) error {
 
 	if swag.IsZero(m.Role) { // not required
@@ -278,6 +391,41 @@ func (m *Rack) validateSite(formats strfmt.Registry) error {
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *Rack) validateStatus(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Status) { // not required
+		return nil
+	}
+
+	if m.Status != nil {
+		if err := m.Status.Validate(formats); err != nil {
+			if ve, ok := err.(*errors.Validation); ok {
+				return ve.ValidateName("status")
+			}
+			return err
+		}
+	}
+
+	return nil
+}
+
+func (m *Rack) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil
@@ -365,6 +513,140 @@ func (m *Rack) MarshalBinary() ([]byte, error) {
 // UnmarshalBinary interface implementation
 func (m *Rack) UnmarshalBinary(b []byte) error {
 	var res Rack
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RackOuterUnit Outer unit
+// swagger:model RackOuterUnit
+type RackOuterUnit struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this rack outer unit
+func (m *RackOuterUnit) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RackOuterUnit) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("outer_unit"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RackOuterUnit) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("outer_unit"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RackOuterUnit) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RackOuterUnit) UnmarshalBinary(b []byte) error {
+	var res RackOuterUnit
+	if err := swag.ReadJSON(b, &res); err != nil {
+		return err
+	}
+	*m = res
+	return nil
+}
+
+// RackStatus Status
+// swagger:model RackStatus
+type RackStatus struct {
+
+	// label
+	// Required: true
+	Label *string `json:"label"`
+
+	// value
+	// Required: true
+	Value *int64 `json:"value"`
+}
+
+// Validate validates this rack status
+func (m *RackStatus) Validate(formats strfmt.Registry) error {
+	var res []error
+
+	if err := m.validateLabel(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateValue(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if len(res) > 0 {
+		return errors.CompositeValidationError(res...)
+	}
+	return nil
+}
+
+func (m *RackStatus) validateLabel(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"label", "body", m.Label); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (m *RackStatus) validateValue(formats strfmt.Registry) error {
+
+	if err := validate.Required("status"+"."+"value", "body", m.Value); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// MarshalBinary interface implementation
+func (m *RackStatus) MarshalBinary() ([]byte, error) {
+	if m == nil {
+		return nil, nil
+	}
+	return swag.WriteJSON(m)
+}
+
+// UnmarshalBinary interface implementation
+func (m *RackStatus) UnmarshalBinary(b []byte) error {
+	var res RackStatus
 	if err := swag.ReadJSON(b, &res); err != nil {
 		return err
 	}

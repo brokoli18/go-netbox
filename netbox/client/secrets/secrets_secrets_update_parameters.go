@@ -20,10 +20,9 @@ package secrets
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the secrets secrets update operation typically these are written to a http.R
 type SecretsSecretsUpdateParams struct {
 
 	/*Data*/
-	Data *models.Secret
+	Data *models.WritableSecret
 	/*ID
 	  A unique integer value identifying this secret.
 
@@ -126,13 +125,13 @@ func (o *SecretsSecretsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the secrets secrets update params
-func (o *SecretsSecretsUpdateParams) WithData(data *models.Secret) *SecretsSecretsUpdateParams {
+func (o *SecretsSecretsUpdateParams) WithData(data *models.WritableSecret) *SecretsSecretsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the secrets secrets update params
-func (o *SecretsSecretsUpdateParams) SetData(data *models.Secret) {
+func (o *SecretsSecretsUpdateParams) SetData(data *models.WritableSecret) {
 	o.Data = data
 }
 

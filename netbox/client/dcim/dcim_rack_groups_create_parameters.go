@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim rack groups create operation typically these are written to a http.
 type DcimRackGroupsCreateParams struct {
 
 	/*Data*/
-	Data *models.RackGroup
+	Data *models.WritableRackGroup
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimRackGroupsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim rack groups create params
-func (o *DcimRackGroupsCreateParams) WithData(data *models.RackGroup) *DcimRackGroupsCreateParams {
+func (o *DcimRackGroupsCreateParams) WithData(data *models.WritableRackGroup) *DcimRackGroupsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim rack groups create params
-func (o *DcimRackGroupsCreateParams) SetData(data *models.RackGroup) {
+func (o *DcimRackGroupsCreateParams) SetData(data *models.WritableRackGroup) {
 	o.Data = data
 }
 

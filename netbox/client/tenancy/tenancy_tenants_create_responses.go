@@ -38,7 +38,6 @@ type TenancyTenantsCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *TenancyTenantsCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewTenancyTenantsCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type TenancyTenantsCreateCreated struct {
 
 func (o *TenancyTenantsCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /tenancy/tenants/][%d] tenancyTenantsCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *TenancyTenantsCreateCreated) GetPayload() *models.Tenant {
+	return o.Payload
 }
 
 func (o *TenancyTenantsCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

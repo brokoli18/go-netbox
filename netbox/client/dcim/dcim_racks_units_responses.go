@@ -38,7 +38,6 @@ type DcimRacksUnitsReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimRacksUnitsReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimRacksUnitsOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimRacksUnitsOK struct {
 
 func (o *DcimRacksUnitsOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/racks/{id}/units/][%d] dcimRacksUnitsOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimRacksUnitsOK) GetPayload() *models.Rack {
+	return o.Payload
 }
 
 func (o *DcimRacksUnitsOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

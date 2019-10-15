@@ -38,7 +38,6 @@ type DcimRackRolesCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimRackRolesCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimRackRolesCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimRackRolesCreateCreated struct {
 
 func (o *DcimRackRolesCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/rack-roles/][%d] dcimRackRolesCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimRackRolesCreateCreated) GetPayload() *models.RackRole {
+	return o.Payload
 }
 
 func (o *DcimRackRolesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

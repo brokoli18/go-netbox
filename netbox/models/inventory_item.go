@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -35,7 +37,7 @@ type InventoryItem struct {
 	//
 	// A unique tag used to identify this item
 	// Max Length: 50
-	AssetTag string `json:"asset_tag,omitempty"`
+	AssetTag *string `json:"asset_tag,omitempty"`
 
 	// Description
 	// Max Length: 100
@@ -62,7 +64,7 @@ type InventoryItem struct {
 	Name *string `json:"name"`
 
 	// Parent
-	Parent int64 `json:"parent,omitempty"`
+	Parent *int64 `json:"parent,omitempty"`
 
 	// Part ID
 	// Max Length: 50
@@ -72,7 +74,7 @@ type InventoryItem struct {
 	// Max Length: 50
 	Serial string `json:"serial,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 }
 
@@ -108,6 +110,10 @@ func (m *InventoryItem) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if len(res) > 0 {
 		return errors.CompositeValidationError(res...)
 	}
@@ -120,7 +126,7 @@ func (m *InventoryItem) validateAssetTag(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MaxLength("asset_tag", "body", string(m.AssetTag), 50); err != nil {
+	if err := validate.MaxLength("asset_tag", "body", string(*m.AssetTag), 50); err != nil {
 		return err
 	}
 
@@ -214,6 +220,23 @@ func (m *InventoryItem) validateSerial(formats strfmt.Registry) error {
 
 	if err := validate.MaxLength("serial", "body", string(m.Serial), 50); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *InventoryItem) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

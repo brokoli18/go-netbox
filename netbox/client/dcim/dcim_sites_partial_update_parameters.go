@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim sites partial update operation typically these are written to a htt
 type DcimSitesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.Site
+	Data *models.WritableSite
 	/*ID
 	  A unique integer value identifying this site.
 
@@ -126,13 +125,13 @@ func (o *DcimSitesPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim sites partial update params
-func (o *DcimSitesPartialUpdateParams) WithData(data *models.Site) *DcimSitesPartialUpdateParams {
+func (o *DcimSitesPartialUpdateParams) WithData(data *models.WritableSite) *DcimSitesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim sites partial update params
-func (o *DcimSitesPartialUpdateParams) SetData(data *models.Site) {
+func (o *DcimSitesPartialUpdateParams) SetData(data *models.WritableSite) {
 	o.Data = data
 }
 

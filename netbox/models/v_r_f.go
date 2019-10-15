@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -68,12 +70,10 @@ type VRF struct {
 	Name *string `json:"name"`
 
 	// Route distinguisher
-	// Required: true
 	// Max Length: 21
-	// Min Length: 1
-	Rd *string `json:"rd"`
+	Rd *string `json:"rd,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -101,6 +101,10 @@ func (m *VRF) Validate(formats strfmt.Registry) error {
 	}
 
 	if err := m.validateRd(formats); err != nil {
+		res = append(res, err)
+	}
+
+	if err := m.validateTags(formats); err != nil {
 		res = append(res, err)
 	}
 
@@ -172,16 +176,29 @@ func (m *VRF) validateName(formats strfmt.Registry) error {
 
 func (m *VRF) validateRd(formats strfmt.Registry) error {
 
-	if err := validate.Required("rd", "body", m.Rd); err != nil {
-		return err
-	}
-
-	if err := validate.MinLength("rd", "body", string(*m.Rd), 1); err != nil {
-		return err
+	if swag.IsZero(m.Rd) { // not required
+		return nil
 	}
 
 	if err := validate.MaxLength("rd", "body", string(*m.Rd), 21); err != nil {
 		return err
+	}
+
+	return nil
+}
+
+func (m *VRF) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

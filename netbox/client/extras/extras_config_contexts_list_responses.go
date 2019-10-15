@@ -42,7 +42,6 @@ type ExtrasConfigContextsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasConfigContextsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasConfigContextsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type ExtrasConfigContextsListOK struct {
 
 func (o *ExtrasConfigContextsListOK) Error() string {
 	return fmt.Sprintf("[GET /extras/config-contexts/][%d] extrasConfigContextsListOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasConfigContextsListOK) GetPayload() *ExtrasConfigContextsListOKBody {
+	return o.Payload
 }
 
 func (o *ExtrasConfigContextsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

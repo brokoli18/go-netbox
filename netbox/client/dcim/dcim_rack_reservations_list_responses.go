@@ -42,7 +42,6 @@ type DcimRackReservationsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimRackReservationsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewDcimRackReservationsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type DcimRackReservationsListOK struct {
 
 func (o *DcimRackReservationsListOK) Error() string {
 	return fmt.Sprintf("[GET /dcim/rack-reservations/][%d] dcimRackReservationsListOK  %+v", 200, o.Payload)
+}
+
+func (o *DcimRackReservationsListOK) GetPayload() *DcimRackReservationsListOKBody {
+	return o.Payload
 }
 
 func (o *DcimRackReservationsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

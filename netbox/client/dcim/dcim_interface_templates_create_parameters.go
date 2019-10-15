@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the dcim interface templates create operation typically these are written to
 type DcimInterfaceTemplatesCreateParams struct {
 
 	/*Data*/
-	Data *models.InterfaceTemplate
+	Data *models.WritableInterfaceTemplate
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *DcimInterfaceTemplatesCreateParams) SetHTTPClient(client *http.Client) 
 }
 
 // WithData adds the data to the dcim interface templates create params
-func (o *DcimInterfaceTemplatesCreateParams) WithData(data *models.InterfaceTemplate) *DcimInterfaceTemplatesCreateParams {
+func (o *DcimInterfaceTemplatesCreateParams) WithData(data *models.WritableInterfaceTemplate) *DcimInterfaceTemplatesCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim interface templates create params
-func (o *DcimInterfaceTemplatesCreateParams) SetData(data *models.InterfaceTemplate) {
+func (o *DcimInterfaceTemplatesCreateParams) SetData(data *models.WritableInterfaceTemplate) {
 	o.Data = data
 }
 

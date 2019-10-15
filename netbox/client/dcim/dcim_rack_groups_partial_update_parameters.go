@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim rack groups partial update operation typically these are written to
 type DcimRackGroupsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.RackGroup
+	Data *models.WritableRackGroup
 	/*ID
 	  A unique integer value identifying this rack group.
 
@@ -126,13 +125,13 @@ func (o *DcimRackGroupsPartialUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim rack groups partial update params
-func (o *DcimRackGroupsPartialUpdateParams) WithData(data *models.RackGroup) *DcimRackGroupsPartialUpdateParams {
+func (o *DcimRackGroupsPartialUpdateParams) WithData(data *models.WritableRackGroup) *DcimRackGroupsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim rack groups partial update params
-func (o *DcimRackGroupsPartialUpdateParams) SetData(data *models.RackGroup) {
+func (o *DcimRackGroupsPartialUpdateParams) SetData(data *models.WritableRackGroup) {
 	o.Data = data
 }
 

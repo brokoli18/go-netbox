@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim power outlets update operation typically these are written to a htt
 type DcimPowerOutletsUpdateParams struct {
 
 	/*Data*/
-	Data *models.PowerOutlet
+	Data *models.WritablePowerOutlet
 	/*ID
 	  A unique integer value identifying this power outlet.
 
@@ -126,13 +125,13 @@ func (o *DcimPowerOutletsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim power outlets update params
-func (o *DcimPowerOutletsUpdateParams) WithData(data *models.PowerOutlet) *DcimPowerOutletsUpdateParams {
+func (o *DcimPowerOutletsUpdateParams) WithData(data *models.WritablePowerOutlet) *DcimPowerOutletsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power outlets update params
-func (o *DcimPowerOutletsUpdateParams) SetData(data *models.PowerOutlet) {
+func (o *DcimPowerOutletsUpdateParams) SetData(data *models.WritablePowerOutlet) {
 	o.Data = data
 }
 

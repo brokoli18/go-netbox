@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim virtual chassis partial update operation typically these are writte
 type DcimVirtualChassisPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.VirtualChassis
+	Data *models.WritableVirtualChassis
 	/*ID
 	  A unique integer value identifying this virtual chassis.
 
@@ -126,13 +125,13 @@ func (o *DcimVirtualChassisPartialUpdateParams) SetHTTPClient(client *http.Clien
 }
 
 // WithData adds the data to the dcim virtual chassis partial update params
-func (o *DcimVirtualChassisPartialUpdateParams) WithData(data *models.VirtualChassis) *DcimVirtualChassisPartialUpdateParams {
+func (o *DcimVirtualChassisPartialUpdateParams) WithData(data *models.WritableVirtualChassis) *DcimVirtualChassisPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim virtual chassis partial update params
-func (o *DcimVirtualChassisPartialUpdateParams) SetData(data *models.VirtualChassis) {
+func (o *DcimVirtualChassisPartialUpdateParams) SetData(data *models.WritableVirtualChassis) {
 	o.Data = data
 }
 

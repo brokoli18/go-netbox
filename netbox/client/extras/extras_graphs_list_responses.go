@@ -42,7 +42,6 @@ type ExtrasGraphsListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *ExtrasGraphsListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewExtrasGraphsListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type ExtrasGraphsListOK struct {
 
 func (o *ExtrasGraphsListOK) Error() string {
 	return fmt.Sprintf("[GET /extras/graphs/][%d] extrasGraphsListOK  %+v", 200, o.Payload)
+}
+
+func (o *ExtrasGraphsListOK) GetPayload() *ExtrasGraphsListOKBody {
+	return o.Payload
 }
 
 func (o *ExtrasGraphsListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

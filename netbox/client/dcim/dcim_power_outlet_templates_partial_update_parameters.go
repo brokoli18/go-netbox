@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim power outlet templates partial update operation typically these are
 type DcimPowerOutletTemplatesPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.PowerOutletTemplate
+	Data *models.WritablePowerOutletTemplate
 	/*ID
 	  A unique integer value identifying this power outlet template.
 
@@ -126,13 +125,13 @@ func (o *DcimPowerOutletTemplatesPartialUpdateParams) SetHTTPClient(client *http
 }
 
 // WithData adds the data to the dcim power outlet templates partial update params
-func (o *DcimPowerOutletTemplatesPartialUpdateParams) WithData(data *models.PowerOutletTemplate) *DcimPowerOutletTemplatesPartialUpdateParams {
+func (o *DcimPowerOutletTemplatesPartialUpdateParams) WithData(data *models.WritablePowerOutletTemplate) *DcimPowerOutletTemplatesPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim power outlet templates partial update params
-func (o *DcimPowerOutletTemplatesPartialUpdateParams) SetData(data *models.PowerOutletTemplate) {
+func (o *DcimPowerOutletTemplatesPartialUpdateParams) SetData(data *models.WritablePowerOutletTemplate) {
 	o.Data = data
 }
 

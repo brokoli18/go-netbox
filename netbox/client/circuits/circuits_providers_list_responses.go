@@ -42,7 +42,6 @@ type CircuitsProvidersListReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *CircuitsProvidersListReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 200:
 		result := NewCircuitsProvidersListOK()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -70,6 +69,10 @@ type CircuitsProvidersListOK struct {
 
 func (o *CircuitsProvidersListOK) Error() string {
 	return fmt.Sprintf("[GET /circuits/providers/][%d] circuitsProvidersListOK  %+v", 200, o.Payload)
+}
+
+func (o *CircuitsProvidersListOK) GetPayload() *CircuitsProvidersListOKBody {
+	return o.Payload
 }
 
 func (o *CircuitsProvidersListOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

@@ -20,6 +20,8 @@ package models
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"strconv"
+
 	strfmt "github.com/go-openapi/strfmt"
 
 	"github.com/go-openapi/errors"
@@ -35,7 +37,7 @@ type DeviceWithConfigContext struct {
 	//
 	// A unique tag used to identify this device
 	// Max Length: 50
-	AssetTag string `json:"asset_tag,omitempty"`
+	AssetTag *string `json:"asset_tag,omitempty"`
 
 	// cluster
 	Cluster *NestedCluster `json:"cluster,omitempty"`
@@ -80,11 +82,11 @@ type DeviceWithConfigContext struct {
 	LastUpdated strfmt.DateTime `json:"last_updated,omitempty"`
 
 	// Local context data
-	LocalContextData string `json:"local_context_data,omitempty"`
+	LocalContextData *string `json:"local_context_data,omitempty"`
 
 	// Name
 	// Max Length: 64
-	Name string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 
 	// Parent device
 	// Read Only: true
@@ -98,16 +100,16 @@ type DeviceWithConfigContext struct {
 	// The lowest-numbered unit occupied by the device
 	// Maximum: 32767
 	// Minimum: 1
-	Position int64 `json:"position,omitempty"`
+	Position *int64 `json:"position,omitempty"`
 
 	// primary ip
-	PrimaryIP *DeviceIPAddress `json:"primary_ip,omitempty"`
+	PrimaryIP *NestedIPAddress `json:"primary_ip,omitempty"`
 
 	// primary ip4
-	PrimaryIp4 *DeviceIPAddress `json:"primary_ip4,omitempty"`
+	PrimaryIp4 *NestedIPAddress `json:"primary_ip4,omitempty"`
 
 	// primary ip6
-	PrimaryIp6 *DeviceIPAddress `json:"primary_ip6,omitempty"`
+	PrimaryIp6 *NestedIPAddress `json:"primary_ip6,omitempty"`
 
 	// rack
 	Rack *NestedRack `json:"rack,omitempty"`
@@ -123,7 +125,7 @@ type DeviceWithConfigContext struct {
 	// status
 	Status *DeviceWithConfigContextStatus `json:"status,omitempty"`
 
-	// Tags
+	// tags
 	Tags []string `json:"tags"`
 
 	// tenant
@@ -140,7 +142,7 @@ type DeviceWithConfigContext struct {
 	VcPriority *int64 `json:"vc_priority,omitempty"`
 
 	// virtual chassis
-	VirtualChassis *DeviceVirtualChassis `json:"virtual_chassis,omitempty"`
+	VirtualChassis *NestedVirtualChassis `json:"virtual_chassis,omitempty"`
 }
 
 // Validate validates this device with config context
@@ -215,6 +217,10 @@ func (m *DeviceWithConfigContext) Validate(formats strfmt.Registry) error {
 		res = append(res, err)
 	}
 
+	if err := m.validateTags(formats); err != nil {
+		res = append(res, err)
+	}
+
 	if err := m.validateTenant(formats); err != nil {
 		res = append(res, err)
 	}
@@ -243,7 +249,7 @@ func (m *DeviceWithConfigContext) validateAssetTag(formats strfmt.Registry) erro
 		return nil
 	}
 
-	if err := validate.MaxLength("asset_tag", "body", string(m.AssetTag), 50); err != nil {
+	if err := validate.MaxLength("asset_tag", "body", string(*m.AssetTag), 50); err != nil {
 		return err
 	}
 
@@ -354,7 +360,7 @@ func (m *DeviceWithConfigContext) validateName(formats strfmt.Registry) error {
 		return nil
 	}
 
-	if err := validate.MaxLength("name", "body", string(m.Name), 64); err != nil {
+	if err := validate.MaxLength("name", "body", string(*m.Name), 64); err != nil {
 		return err
 	}
 
@@ -385,11 +391,11 @@ func (m *DeviceWithConfigContext) validatePosition(formats strfmt.Registry) erro
 		return nil
 	}
 
-	if err := validate.MinimumInt("position", "body", int64(m.Position), 1, false); err != nil {
+	if err := validate.MinimumInt("position", "body", int64(*m.Position), 1, false); err != nil {
 		return err
 	}
 
-	if err := validate.MaximumInt("position", "body", int64(m.Position), 32767, false); err != nil {
+	if err := validate.MaximumInt("position", "body", int64(*m.Position), 32767, false); err != nil {
 		return err
 	}
 
@@ -512,6 +518,23 @@ func (m *DeviceWithConfigContext) validateStatus(formats strfmt.Registry) error 
 			}
 			return err
 		}
+	}
+
+	return nil
+}
+
+func (m *DeviceWithConfigContext) validateTags(formats strfmt.Registry) error {
+
+	if swag.IsZero(m.Tags) { // not required
+		return nil
+	}
+
+	for i := 0; i < len(m.Tags); i++ {
+
+		if err := validate.MinLength("tags"+"."+strconv.Itoa(i), "body", string(m.Tags[i]), 1); err != nil {
+			return err
+		}
+
 	}
 
 	return nil

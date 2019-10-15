@@ -38,7 +38,6 @@ type DcimDevicesCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimDevicesCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimDevicesCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -66,6 +65,10 @@ type DcimDevicesCreateCreated struct {
 
 func (o *DcimDevicesCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/devices/][%d] dcimDevicesCreateCreated  %+v", 201, o.Payload)
+}
+
+func (o *DcimDevicesCreateCreated) GetPayload() *models.Device {
+	return o.Payload
 }
 
 func (o *DcimDevicesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {

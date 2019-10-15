@@ -20,10 +20,9 @@ package extras
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the extras topology maps partial update operation typically these are writte
 type ExtrasTopologyMapsPartialUpdateParams struct {
 
 	/*Data*/
-	Data *models.TopologyMap
+	Data *models.WritableTopologyMap
 	/*ID
 	  A unique integer value identifying this topology map.
 
@@ -126,13 +125,13 @@ func (o *ExtrasTopologyMapsPartialUpdateParams) SetHTTPClient(client *http.Clien
 }
 
 // WithData adds the data to the extras topology maps partial update params
-func (o *ExtrasTopologyMapsPartialUpdateParams) WithData(data *models.TopologyMap) *ExtrasTopologyMapsPartialUpdateParams {
+func (o *ExtrasTopologyMapsPartialUpdateParams) WithData(data *models.WritableTopologyMap) *ExtrasTopologyMapsPartialUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the extras topology maps partial update params
-func (o *ExtrasTopologyMapsPartialUpdateParams) SetData(data *models.TopologyMap) {
+func (o *ExtrasTopologyMapsPartialUpdateParams) SetData(data *models.WritableTopologyMap) {
 	o.Data = data
 }
 

@@ -20,10 +20,9 @@ package circuits
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -79,7 +78,7 @@ for the circuits circuits create operation typically these are written to a http
 type CircuitsCircuitsCreateParams struct {
 
 	/*Data*/
-	Data *models.Circuit
+	Data *models.WritableCircuit
 
 	timeout    time.Duration
 	Context    context.Context
@@ -120,13 +119,13 @@ func (o *CircuitsCircuitsCreateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the circuits circuits create params
-func (o *CircuitsCircuitsCreateParams) WithData(data *models.Circuit) *CircuitsCircuitsCreateParams {
+func (o *CircuitsCircuitsCreateParams) WithData(data *models.WritableCircuit) *CircuitsCircuitsCreateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the circuits circuits create params
-func (o *CircuitsCircuitsCreateParams) SetData(data *models.Circuit) {
+func (o *CircuitsCircuitsCreateParams) SetData(data *models.WritableCircuit) {
 	o.Data = data
 }
 

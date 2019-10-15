@@ -38,7 +38,6 @@ type DcimInterfacesCreateReader struct {
 // ReadResponse reads a server response into the received o.
 func (o *DcimInterfacesCreateReader) ReadResponse(response runtime.ClientResponse, consumer runtime.Consumer) (interface{}, error) {
 	switch response.Code() {
-
 	case 201:
 		result := NewDcimInterfacesCreateCreated()
 		if err := result.readResponse(response, consumer, o.formats); err != nil {
@@ -61,16 +60,20 @@ func NewDcimInterfacesCreateCreated() *DcimInterfacesCreateCreated {
 DcimInterfacesCreateCreated dcim interfaces create created
 */
 type DcimInterfacesCreateCreated struct {
-	Payload *models.Interface
+	Payload *models.DeviceInterface
 }
 
 func (o *DcimInterfacesCreateCreated) Error() string {
 	return fmt.Sprintf("[POST /dcim/interfaces/][%d] dcimInterfacesCreateCreated  %+v", 201, o.Payload)
 }
 
+func (o *DcimInterfacesCreateCreated) GetPayload() *models.DeviceInterface {
+	return o.Payload
+}
+
 func (o *DcimInterfacesCreateCreated) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
-	o.Payload = new(models.Interface)
+	o.Payload = new(models.DeviceInterface)
 
 	// response payload
 	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {

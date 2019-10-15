@@ -20,10 +20,9 @@ package dcim
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"context"
 	"net/http"
 	"time"
-
-	"golang.org/x/net/context"
 
 	"github.com/go-openapi/errors"
 	"github.com/go-openapi/runtime"
@@ -80,7 +79,7 @@ for the dcim platforms update operation typically these are written to a http.Re
 type DcimPlatformsUpdateParams struct {
 
 	/*Data*/
-	Data *models.Platform
+	Data *models.WritablePlatform
 	/*ID
 	  A unique integer value identifying this platform.
 
@@ -126,13 +125,13 @@ func (o *DcimPlatformsUpdateParams) SetHTTPClient(client *http.Client) {
 }
 
 // WithData adds the data to the dcim platforms update params
-func (o *DcimPlatformsUpdateParams) WithData(data *models.Platform) *DcimPlatformsUpdateParams {
+func (o *DcimPlatformsUpdateParams) WithData(data *models.WritablePlatform) *DcimPlatformsUpdateParams {
 	o.SetData(data)
 	return o
 }
 
 // SetData adds the data to the dcim platforms update params
-func (o *DcimPlatformsUpdateParams) SetData(data *models.Platform) {
+func (o *DcimPlatformsUpdateParams) SetData(data *models.WritablePlatform) {
 	o.Data = data
 }
 
